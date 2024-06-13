@@ -1,0 +1,15 @@
+.row{
+    margin-top: 10px;
+}
+.icon {
+    font-size: 2rem;
+    margin: 0.5rem;
+    text-align: center;
+
+}
+.col-md-2{
+    text-align: left;
+}
+.col-md-5{
+    text-align: center;
+}
