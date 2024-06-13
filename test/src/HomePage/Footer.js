@@ -4,7 +4,7 @@ import './Footer.css'
 
 export default function Footer() {
     return (
-        <Row>
+        <Row className='footer'>
             <Col md={1}></Col>
             <Col md={2}>
             <h3>Công Ty</h3>
@@ -12,7 +12,7 @@ export default function Footer() {
             <a href=''><h6>Việc làm</h6></a>
             </Col>
             <Col md={2}>
-            <h3>Công Ty</h3>
+            <h3>Cộng đồng</h3>
             <a href=''><h6>Nhà Phát Triển</h6></a>
             <a href=''><h6>Quảng Cáo</h6></a>
             <a href=''><h6>Nhà đầu tư</h6></a>
@@ -20,7 +20,7 @@ export default function Footer() {
 
             </Col>
             <Col md={2}>
-            <h3>Công Ty</h3>
+            <h3>Liên kết hữu ích</h3>
             <a href=''><h6>Hỗ trợ</h6></a>
             <a href=''><h6>Ứng dụng di động miễn phí</h6></a>
             </Col>
