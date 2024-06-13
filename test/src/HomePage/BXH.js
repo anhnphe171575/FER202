@@ -5,7 +5,7 @@ import './BXH.css'
 const BXH = ({ songs }) => {
     return (
         <Container>
-            <Col md={4}>
+            <Col >
                 <Row>
                     <h4>BXH Bài Hát</h4>
                 </Row>

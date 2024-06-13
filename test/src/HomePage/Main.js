@@ -6,7 +6,7 @@ export default function Main({ categories }) {
       <Row><h2>{category.name}</h2></Row>
       <Row>
         {category.songs.map((song, index) => (
-          <Col key={index} xs={2}>
+          <Col key={index} xs={3}>
             <Card>
               <Card.Img variant="top" src={song.imgSrc} />
               <Card.Body>
