@@ -1,10 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import Headerhomepage from './HomePage/Header';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css'
 import './index.css';
-import "bootstrap/dist/css/bootstrap.min.css";
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import 'jquery/dist/jquery.slim.js';
 import Main from './HomePage/Main';
+import Footer from './HomePage/Footer';
+import BXH from './HomePage/BXH';
+import { Row,Col, Container } from 'react-bootstrap';
+
+
+const songs = [
+  { title: 'Thiên Lý Ơi', artist: 'Jack' },
+  { title: 'Lạc Trôi', artist: 'Sơn Tùng M-TP' },
+  { title: 'Em Gì Ơi', artist: 'Jack & K-ICM' },
+  { title: 'Bạc Phận', artist: 'Jack & K-ICM' },
+  { title: 'Hồng Nhan', artist: 'Jack' },
+  { title: 'Sóng Gió', artist: 'Jack & K-ICM' },
+  { title: 'Hoa Vô Sắc', artist: 'Jack & K-ICM' },
+  { title: 'Là 1 Thằng Con Trai', artist: 'Jack' },
+  { title: 'Hoa Hải Đường', artist: 'Jack' },
+  { title: 'Đom Đóm', artist: 'Jack' }
+];
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const categories = [
   {
@@ -46,7 +65,19 @@ const categories = [
 ];
 root.render(
   <React.StrictMode>
+    
+    <Headerhomepage></Headerhomepage>
+    <Container style={{ marginTop:"50px"}}>
+    <Row>
+      <Col md={8}>
     <Main categories={categories} />
+    </Col>
+    <Col md={4}>
+    <BXH songs={songs} />
+    </Col>
+    </Row>
+    </Container>
+    <Footer></Footer>
   </React.StrictMode>
 );
 
