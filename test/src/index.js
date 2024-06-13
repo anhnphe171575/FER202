@@ -1,17 +1,52 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'jquery/dist/jquery.slim.js';
+import Main from './HomePage/Main';
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const categories = [
+  {
+    name: 'Nhạc Trẻ',
+    songs: [
+      { title: 'Tên Bài Hát', imgSrc: './images/image1.jpg' },
+      { title: 'Tên Bài Hát', imgSrc: './images/image1.jpg' },
+      { title: 'Tên Bài Hát', imgSrc: './images/image1.jpg' },
+      { title: 'Tên Bài Hát', imgSrc: './images/image1.jpg' },
+    ],
+  },
+  {
+    name: 'Trữ Tình',
+    songs: [
+      { title: 'Tên Bài Hát', imgSrc: './images/image2.jpg' },
+      { title: 'Tên Bài Hát', imgSrc: './images/image2.jpg' },
+      { title: 'Tên Bài Hát', imgSrc: './images/image2.jpg' },
+      { title: 'Tên Bài Hát', imgSrc: './images/image2.jpg' },
+    ],
+  },
+  {
+    name: 'Rap',
+    songs: [
+      { title: 'Tên Bài Hát', imgSrc: './images/image3.jpg' },
+      { title: 'Tên Bài Hát', imgSrc: './images/image3.jpg' },
+      { title: 'Tên Bài Hát', imgSrc: './images/image3.jpg' },
+      { title: 'Tên Bài Hát', imgSrc: './images/image3.jpg' },
+    ],
+  },
+  {
+    name: 'Dân Ca',
+    songs: [
+      { title: 'Tên Bài Hát', imgSrc: './images/image4.jpg' },
+      { title: 'Tên Bài Hát', imgSrc: './images/image4.jpg' },
+      { title: 'Tên Bài Hát', imgSrc: './images/image4.jpg' },
+      { title: 'Tên Bài Hát', imgSrc: './images/image4.jpg' },
+    ],
+  },
+];
 root.render(
   <React.StrictMode>
-    <App />
+    <Main categories={categories} />
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
