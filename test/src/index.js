@@ -1,17 +1,25 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import BXH from './HomePage/BXH';
+
+
+const songs = [
+  { title: 'Thiên Lý Ơi', artist: 'Jack' },
+  { title: 'Lạc Trôi', artist: 'Sơn Tùng M-TP' },
+  { title: 'Em Gì Ơi', artist: 'Jack & K-ICM' },
+  { title: 'Bạc Phận', artist: 'Jack & K-ICM' },
+  { title: 'Hồng Nhan', artist: 'Jack' },
+  { title: 'Sóng Gió', artist: 'Jack & K-ICM' },
+  { title: 'Hoa Vô Sắc', artist: 'Jack & K-ICM' },
+  { title: 'Là 1 Thằng Con Trai', artist: 'Jack' },
+  { title: 'Hoa Hải Đường', artist: 'Jack' },
+  { title: 'Đom Đóm', artist: 'Jack' }
+];
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BXH songs={songs} />
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
