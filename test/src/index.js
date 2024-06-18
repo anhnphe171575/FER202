@@ -10,6 +10,7 @@ import BXH from './HomePage/BXH';
 import { Row,Col, Container } from 'react-bootstrap';
 import Album from './Album/Album';
 import BXHAlbum from './Album/BxhAlbum';
+import Register from './Register/Register';
 
 
 const songs = [
@@ -80,7 +81,7 @@ const albums = [
 
 root.render(
   <React.StrictMode>
-    
+  
     {/* <Headerhomepage></Headerhomepage>
     <Container style={{ marginTop:"50px"}}>
     <Row>
@@ -93,7 +94,8 @@ root.render(
     </Row>
     </Container>
     <Footer></Footer> */}
-    <Headerhomepage/>
+
+    {/* <Headerhomepage/>
     <Container style={{ marginTop:"50px"}}>
     <Row>
       <Col md={8}>
@@ -104,7 +106,9 @@ root.render(
     </Col>
     </Row>
     </Container>
-    <Footer/>
+    <Footer/> */}
+
+    <Register></Register>
   </React.StrictMode>
 );
 
