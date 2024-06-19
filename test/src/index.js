@@ -4,15 +4,17 @@ import Headerhomepage from './HomePage/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import './index.css';
-import Main from './HomePage/Main';
-import Footer from './HomePage/Footer';
-import BXH from './HomePage/BXH';
+// import Main from './HomePage/Main';
+ import Footer from './HomePage/Footer';
+// import BXH from './HomePage/BXH';
 import { Row,Col, Container } from 'react-bootstrap';
 import Album from './Album/Album';
 import BXHAlbum from './Album/BxhAlbum';
 import Ranking from './BXH/BXH';
 // import Login from './Login/Login';
 // import Register from './Register/Register';
+import Header from './SongDetails/Header';
+import SongDetail from './SongDetails/SongDetails';
 
 
 const songs = [
@@ -114,9 +116,14 @@ root.render(
 
     {/* <Register></Register> */}
     
-    <Headerhomepage/>
+    {/* <Headerhomepage/>
     <Ranking/>
-    <Footer/>
+    <Footer/> */}
+
+
+    {/* <Header></Header>
+    <SongDetail albums={albums}  songs={songs}></SongDetail>
+    <Footer/>  */}
   </React.StrictMode>
 );
 

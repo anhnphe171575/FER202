@@ -1,0 +1,135 @@
+.music-player-container {
+    padding: 10px;
+    background-color: black;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.album-cover {
+    width: 100%;
+    height: auto;
+}
+
+.lyrics-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lyrics {
+    text-align: center;
+    font-size: 1rem;
+    color: #333;
+}
+
+.lyrics p {
+    margin: 0;
+}
+
+.lyrics .highlight {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.progress-section {
+    margin-top: 10px;
+}
+
+.play-button {
+    font-size: 1.5rem;
+    color: #007bff;
+    padding: 0;
+}
+
+.play-button:hover {
+    color: #0056b3;
+}
+
+.progress-bar-container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.progress-bar {
+    height: 10px;
+    border-radius: 5px;
+    background-color: #e9ecef;
+}
+
+.buffer-bar {
+    background-color: #5bc0de;
+}
+
+.current-bar {
+    background-color: #007bff;
+}
+
+.time-display {
+    margin-top: 5px;
+    text-align: right;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.extra-info {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.extra-info button {
+    font-size: 0.8rem;
+}
+/* Album.css */
+.album-card {
+    width: 100%;
+    height: 250px; /* Set a fixed height for the cards */
+    overflow: hidden;
+  }
+  
+  .album-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the card */
+  }
+  
+  .album-card-title {
+    text-align: center;
+    font-size: 1rem;
+  }
+  
+  .icon-row {
+    display: flex;
+    justify-content: flex-start; /* Align items to the start of the container */
+    align-items: center;
+}
+
+.icon-row i {
+    margin-right: 15px; /* Adjust the margin as needed for spacing between items */
+    display: flex;
+    align-items: center;
+}
+
+.icon-row i::before {
+    margin-right: 5px; /* Adjust for spacing between icon and text */
+}
+.my-2{
+    background-color: rgb(252, 251, 251);
+    font-size: 15px;
+}
+h4{
+    text-align: center;
+}
+.index-color-1 {
+    color: red;
+}
+
+.index-color-2 {
+    color: orange;
+}
+
+.index-color-3 {
+    color: yellow;
+}
