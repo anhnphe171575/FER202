@@ -13,61 +13,12 @@ import { Row,Col, Container } from 'react-bootstrap';
 // import Register from './Register/Register';
 import Header from './SongDetails/Header';
 import SongDetail from './SongDetails/SongDetails';
+import HomePage from './HomePage/homepage';
 
 
-const songs = [
-  { title: 'Thiên Lý Ơi', artist: 'Jack' },
-  { title: 'Lạc Trôi', artist: 'Sơn Tùng M-TP' },
-  { title: 'Em Gì Ơi', artist: 'Jack & K-ICM' },
-  { title: 'Bạc Phận', artist: 'Jack & K-ICM' },
-  { title: 'Hồng Nhan', artist: 'Jack' },
-  { title: 'Sóng Gió', artist: 'Jack & K-ICM' },
-  { title: 'Hoa Vô Sắc', artist: 'Jack & K-ICM' },
-  { title: 'Là 1 Thằng Con Trai', artist: 'Jack' },
-  { title: 'Hoa Hải Đường', artist: 'Jack' },
-  { title: 'Đom Đóm', artist: 'Jack' }
-];
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const categories = [
-  {
-    name: 'Nhạc Trẻ',
-    songs: [
-      { title: 'Tên Bài Hát', imgSrc: './images/image1.jpg' },
-      { title: 'Tên Bài Hát', imgSrc: './images/image1.jpg' },
-      { title: 'Tên Bài Hát', imgSrc: './images/image1.jpg' },
-      { title: 'Tên Bài Hát', imgSrc: './images/image1.jpg' },
-    ],
-  },
-  {
-    name: 'Trữ Tình',
-    songs: [
-      { title: 'Tên Bài Hát', imgSrc: './images/image2.jpg' },
-      { title: 'Tên Bài Hát', imgSrc: './images/image2.jpg' },
-      { title: 'Tên Bài Hát', imgSrc: './images/image2.jpg' },
-      { title: 'Tên Bài Hát', imgSrc: './images/image2.jpg' },
-    ],
-  },
-  {
-    name: 'Rap',
-    songs: [
-      { title: 'Tên Bài Hát', imgSrc: './images/image3.jpg' },
-      { title: 'Tên Bài Hát', imgSrc: './images/image3.jpg' },
-      { title: 'Tên Bài Hát', imgSrc: './images/image3.jpg' },
-      { title: 'Tên Bài Hát', imgSrc: './images/image3.jpg' },
-    ],
-  },
-  {
-    name: 'Dân Ca',
-    songs: [
-      { title: 'Tên Bài Hát', imgSrc: './images/image4.jpg' },
-      { title: 'Tên Bài Hát', imgSrc: './images/image4.jpg' },
-      { title: 'Tên Bài Hát', imgSrc: './images/image4.jpg' },
-      { title: 'Tên Bài Hát', imgSrc: './images/image4.jpg' },
-    ],
-  },
-];
 
 
 const albums = [
@@ -111,11 +62,12 @@ root.render(
     <Footer/> */}
     {/* <Register></Register> */}
 
-    <Header></Header>
+    {/* <Header></Header>
   
     <SongDetail albums={albums}  songs={songs}></SongDetail>
 
-    <Footer/> 
+    <Footer/>  */}
+    <HomePage></HomePage>
   </React.StrictMode>
 );
 
