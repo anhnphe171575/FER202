@@ -8,8 +8,10 @@ import './index.css';
  import Footer from './HomePage/Footer';
 // import BXH from './HomePage/BXH';
 import { Row,Col, Container } from 'react-bootstrap';
-// import Album from './Album/Album';
-// import BXHAlbum from './Album/BxhAlbum';
+import Album from './Album/Album';
+import BXHAlbum from './Album/BxhAlbum';
+import Ranking from './BXH/BXH';
+// import Login from './Login/Login';
 // import Register from './Register/Register';
 import Header from './SongDetails/Header';
 import SongDetail from './SongDetails/SongDetails';
@@ -48,7 +50,7 @@ root.render(
     </Container>
     <Footer></Footer> */}
 
-    {/* <Headerhomepage/>
+    {/*<Headerhomepage/>
     <Container style={{ marginTop:"50px"}}>
     <Row>
       <Col md={8}>
@@ -59,15 +61,21 @@ root.render(
     </Col>
     </Row>
     </Container>
-    <Footer/> */}
+    <Footer/>*/}
+
+      {/* <Login></Login> */}
+
     {/* <Register></Register> */}
+    
+    {/* <Headerhomepage/>
+    <Ranking/>
+    <Footer/> */}
+
+
 
     {/* <Header></Header>
-  
     <SongDetail albums={albums}  songs={songs}></SongDetail>
-
     <Footer/>  */}
-    <HomePage></HomePage>
   </React.StrictMode>
 );
 
