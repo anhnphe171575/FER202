@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './BXH.css'
-const BXH = ({ songs }) => {
+const BXH = () => {
+    const [songs, setSongs] = useState([]);
+    useEffect(() => {
+        fetch(`http://localhost:9999/listsongs`)
+            .then(res => res.json())
+            .then(data => {
+                const filteredSongs = data.filter(song => song.ranking >= 1 && song.ranking <= 10);
+                setSongs(filteredSongs);
+            })
+            .catch(error => console.error('Error fetching and filtering songs:', error));
+    }, []);
     return (
         <Container>
             <Col >
@@ -13,7 +23,7 @@ const BXH = ({ songs }) => {
                     <Row key={index} className="my-2">
                         <Col md='2' className={`index-color-${index + 1}`}>{index + 1}</Col>
                         <Col>
-                            <Row>{song.title}</Row>
+                            <Row><a href={`/song/${song.id}`}>{song.title}</a></Row>
                             <Row>{song.artist}</Row>
                         </Col>
                     </Row>
