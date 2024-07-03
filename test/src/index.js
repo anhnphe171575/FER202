@@ -8,11 +8,14 @@ import './index.css';
  import Footer from './HomePage/Footer';
 // import BXH from './HomePage/BXH';
 import { Row,Col, Container } from 'react-bootstrap';
-// import Album from './Album/Album';
-// import BXHAlbum from './Album/BxhAlbum';
+import Album from './Album/Album';
+import BXHAlbum from './Album/BxhAlbum';
 // import Register from './Register/Register';
 import Header from './SongDetails/Header';
 import SongDetail from './SongDetails/SongDetails';
+import PlaylistComponent from './Playlist/Playlist';
+import BXHPlaylist from './Playlist/BXHPlaylist';
+import PlaylistDetail from './Playlist/PlaylistDetail';
 
 
 const songs = [
@@ -80,7 +83,44 @@ const albums = [
   { title: 'Tên Album 7', cover: './images/image3.jpg' },
   { title: 'Tên Album 8', cover: './images/image4.jpg' }
 ];
-
+const playlist = [
+  {
+    name: 'playlist1',
+    img:'./images/image3.jpg',
+    songs: [
+      { title: 'Tevoven', imgSrc: './images/image5.jpg' },
+      { title: 'Duyen Phan', imgSrc: './images/image2.jpg' },
+      { title: 'Binh Gold', imgSrc: './images/image3.jpg' },
+      { title: 'Sai Gon dau long qua', imgSrc: './images/image1.jpg' },
+    ] 
+  },{
+    name: 'playlist2',
+    img:'./images/image1.jpg',
+    songs: [
+      { title: 'Tevoven', imgSrc: './images/image5.jpg' },
+      { title: 'Duyen Phan', imgSrc: './images/image2.jpg' },
+      { title: 'Binh Gold', imgSrc: './images/image3.jpg' },
+      { title: 'Sai Gon dau long qua', imgSrc: './images/image1.jpg' },
+    ],  
+  },{
+    name: 'playlist3',
+    img:'./images/image2.jpg',
+    songs: [
+      { title: 'Tevoven', imgSrc: './images/image5.jpg' },
+      { title: 'Duyen Phan', imgSrc: './images/image2.jpg' },
+      { title: 'Binh Gold', imgSrc: './images/image3.jpg' },
+      { title: 'Sai Gon dau long qua', imgSrc: './images/image1.jpg' },
+    ],  
+  },{
+    name: 'playlist4',
+    img:'./images/image2.jpg',
+    songs: [
+      { title: 'Tevoven', imgSrc: './images/image5.jpg' },
+      { title: 'Duyen Phan', imgSrc: './images/image2.jpg' },
+      { title: 'Binh Gold', imgSrc: './images/image3.jpg' },
+      { title: 'Sai Gon dau long qua', imgSrc: './images/image1.jpg' },
+    ],  
+  }];
 root.render(
   <React.StrictMode>
   
@@ -101,14 +141,13 @@ root.render(
     <Container style={{ marginTop:"50px"}}>
     <Row>
       <Col md={8}>
-    <Album albums={albums} />
+<PlaylistDetail playlists={playlist}/>
     </Col>
     <Col md={4}>
-    <BXHAlbum albums={albums} />
+    <BXHPlaylist playlist={playlist}></BXHPlaylist>
     </Col>
     </Row>
-    </Container>
-    <Footer/> */}
+    </Container> */}
     {/* <Register></Register> */}
 
     <Header></Header>
