@@ -1,4 +1,4 @@
-import { Row, Col,P } from 'react-bootstrap'
+import { Row, Col} from 'react-bootstrap'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './Footer.css'
 

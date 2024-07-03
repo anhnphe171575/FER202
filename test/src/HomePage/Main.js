@@ -1,4 +1,5 @@
 import { Col, Row, Card, Container } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 
 export default function Main({ categories }) {
   const MusicCategory = ({ category }) => (
@@ -10,7 +11,7 @@ export default function Main({ categories }) {
             <Card>
               <Card.Img variant="top" src={song.imgSrc} />
               <Card.Body>
-                <Card.Title>{song.title}</Card.Title>
+                <Card.Title><Link to={`/song/${song.id}`}>{song.title}</Link></Card.Title>
               </Card.Body>
             </Card>
           </Col>

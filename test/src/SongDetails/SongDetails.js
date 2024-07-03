@@ -1,89 +1,185 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Link, useParams } from "react-router-dom";
 
-import React from 'react';
-import { Container, Row, Col, ProgressBar, Image, Button, Card } from 'react-bootstrap';
-import './SongDetails.css'; // Custom CSS for further styling
+import './SongDetails.css';
+import Headerhomepage from '../HomePage/Header';
 
-const SongDetail = ({ albums, songs }) => {
-    const currentProgress = 29.6734;
-    const bufferProgress = 36.9574;
-    const currentTime = "01:36";
-    const totalTime = "03:40";
+
+export default function SongDetail() {
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [currentTime, setCurrentTime] = useState(0);
+    const [duration, setDuration] = useState(0);
+    const [currentLyric, setCurrentLyric] = useState("Nếu em nói mình xa nhau");
+    const progressBarRef = React.useRef(null);
+    const { sID } = useParams();
+    const [albums, setAlbums] = useState([]);
+    const [songsBXH, setSongsBXH] = useState([]);
+    const [songsBXH1, setSongsBXH1] = useState([]);
+
+    const [song, setSong] = useState([]);
+    const audioRef = useRef(new Audio());
+
+    const lyrics = [
+        { time: 0, text: "Nếu em nói mình xa nhau" },
+        { time: 5, text: "Người ta sẽ không còn thấy nhau nữa" },
+        { time: 10, text: "Và chúng ta sẽ mất nhau thật sao?" },
+        // Thêm các dòng lời bài hát khác với thời gian tương ứng
+    ];
+
+    useEffect(() => {
+        fetch(`http://localhost:9999/albums`)
+            .then(res => res.json())
+            .then(data => setAlbums(data))
+            .catch(e => console.log(e));
+
+    }, []);
+
+
+    useEffect(() => {
+        fetch(`http://localhost:9999/listsongs/${sID}`)
+            .then(res => res.json())
+            .then(data => setSong(data))
+            .catch(e => console.log(e));
+
+    }, []);
+
+    useEffect(() => {
+        fetch(`http://localhost:9999/listsongs`)
+            .then(res => res.json())
+            .then(data => {
+                const filteredSongs = data.filter(song => song.ranking >= 1 && song.ranking <= 10);
+                setSongsBXH1(filteredSongs);
+            })
+            .catch(error => console.error('Error fetching and filtering songs:', error));
+    }, []);
+
+
+    useEffect(() => {
+        const audio = audioRef.current;
+        if (song.src) {
+            audio.src = song.src;
+            audio.addEventListener('timeupdate', updateProgress);
+            audio.addEventListener('loadedmetadata', () => {
+                setDuration(audio.duration);
+            });
+
+            return () => {
+                audio.removeEventListener('timeupdate', updateProgress);
+                audio.removeEventListener('loadedmetadata', () => { });
+            };
+        }
+    }, [song]);
+
+    const updateProgress = () => {
+        const audio = audioRef.current;
+        setCurrentTime(audio.currentTime);
+
+        // Cập nhật lời bài hát
+        const currentLyric = lyrics.reduce((prev, curr) => {
+            if (audio.currentTime >= curr.time) {
+                return curr;
+            }
+            return prev;
+        });
+
+        if (currentLyric.text !== currentLyric) {
+            setCurrentLyric("");
+            setTimeout(() => setCurrentLyric(currentLyric.text), 100);
+        }
+    };
+
+    const togglePlayPause = () => {
+        const audio = audioRef.current;
+        if (isPlaying) {
+            audio.pause();
+        } else {
+            audio.play();
+        }
+        setIsPlaying(!isPlaying);
+    };
+
+    const handleProgressChange = (e) => {
+        const audio = audioRef.current;
+        const clickPosition = (e.pageX - progressBarRef.current.offsetLeft) / progressBarRef.current.offsetWidth;
+        const newTime = clickPosition * audio.duration;
+        audio.currentTime = newTime;
+        setCurrentTime(newTime);
+    };
+
+    const formatTime = (time) => {
+        const minutes = Math.floor(time / 60);
+        const seconds = Math.floor(time % 60);
+        return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    };
 
     return (
-        <Container style={{marginTop:"60px"}}>
+        <Container>
+            <Row>
+                <Headerhomepage></Headerhomepage>
+            </Row>
             <Row>
                 <Col md={8}>
                     <Row>
                         <Col>
-                            <p style={{ fontSize: '1.5rem' }}><strong>Em Gì Ơi - Jack ,K-ICM</strong></p>
+                            <p style={{ fontSize: '1.5rem' }}><strong>{song.title}</strong></p>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
-                            <p style={{ fontSize: '1.2rem' }}><strong>Nhạc sĩ:</strong> Jack ,K-ICM</p>
+                            <p style={{ fontSize: '1.2rem' }}><strong>Nhạc sĩ:</strong>{song.artist}</p>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
-                            <p style={{ fontSize: '1.2rem' }}><strong>Thể loại:</strong> Nhạc Trẻ</p>
+                            <p style={{ fontSize: '1.2rem' }}><strong>Thể loại:</strong>{song.categoryId} </p>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
-                            <p style={{ fontSize: '1.2rem' }}><strong>Lượt nghe:</strong> 1,000,000</p>
+                            <p style={{ fontSize: '1.2rem' }}><strong>Lượt nghe:</strong>{song.plays} </p>
                         </Col>
                     </Row>
-
-
-                    <Row className="music-player-container">
-
-                        <Row>
-                            <Col xs={2}>
-                                <Image src="./images/image1.jpg" className="album-cover" rounded />
-                            </Col>
-                            <Col xs={10} className="lyrics-section">
-                                <div className="lyrics">
-                                    <p>Nên tuyến lệ này không ướt</p>
-                                    <p className="highlight">Không còn ai bạn tâm lưu luyến gì</p>
+                    <Row>
+                        <div className="music-player">
+                            <div className="song-info">
+                                <img src={song.imgSrc} alt="Album cover" className="cover-art" />
+                                <div className="song-details">
+                                    <h2 className="song-title">{song.title}</h2>
+                                    <p className="artist">{song.artist}</p>
                                 </div>
-                            </Col>
-                        </Row>
-                        <Row className="progress-section">
-                            <Col xs={1}>
-                                <Button variant="link" className="play-button">
-                                    <i className="fas fa-play"></i>
-                                </Button>
-                            </Col>
-                            <Col xs={10} className="progress-bar-container">
-                                <ProgressBar>
-                                    <ProgressBar now={bufferProgress} variant="info" key={1} className="buffer-bar" />
-                                    <ProgressBar now={currentProgress} variant="primary" key={2} className="current-bar" />
-                                </ProgressBar>
-                                <div className="time-display">{currentTime} / {totalTime}</div>
-                            </Col>
-                            <Col xs={1} className="extra-info">
-                                <Button variant="outline-light" size="sm">128kbps</Button>
-                            </Col>
-                        </Row>
+                            </div>
+                            {/* <div className="lyrics">{currentLyric}</div> */}
+                            <div className="controls">
+                                <button className="play-pause" onClick={togglePlayPause}>
+                                    {isPlaying ? '⏸' : '▶'}
+                                </button>
+                                <div className="progress-bar" ref={progressBarRef} onClick={handleProgressChange}>
+                                    <div
+                                        className="progress"
+                                        style={{ width: `${(currentTime / duration) * 100}%` }}
+                                    ></div>
+                                </div>
+                                <span className="time">
+                                    {formatTime(currentTime)} / {formatTime(duration)}
+                                </span>
+                            </div>
+                            <div className="quality">128kbps</div>
+                        </div>
                     </Row>
-                    <Row class="icon-row" style={{marginTop:"10px"}}>
+                    <Row className="icon-row" style={{ marginTop: "10px" }}>
                         <Col xs={6}>
-                            
                         </Col>
                         <Col>
-                        <i className="bi bi-heart" style={{padding:"5px"}}></i> Thêm Vào
-                            <i className="bi bi-download" style={{padding:"5px"}}></i> Tải Nhạc
-                            <i className="bi bi-share" style={{padding:"5px"}}></i> Chia Sẻ
-                            <i className="bi bi-phone-vibrate" style={{padding:"5px"}}></i> Nhạc Chờ
+                            <i className="bi bi-heart" style={{ padding: "5px" }}></i> Thêm Vào
+                            <i className="bi bi-download" style={{ padding: "5px" }}></i> Tải Nhạc
+                            <i className="bi bi-share" style={{ padding: "5px" }}></i> Chia Sẻ
+                            <i className="bi bi-phone-vibrate" style={{ padding: "5px" }}></i> Nhạc Chờ
                         </Col>
-                        
                     </Row>
-                    <Row style={{ border: '1px solid', marginTop:"20px"}}>
+                    <Row style={{ border: '1px solid', marginTop: "20px" }}>
                         <h3> Lời bài hát: Em Gì Ơi</h3>
-
                         <p>Nhạc sĩ : ICM,jack</p>
-
-
                         <p>[Verse:]</p>
                         <p>Đừng khóc như thế xin đừng khóc như thế</p>
                         <p>Bao nhiêu niềm đau chôn giấu mong ngày sẽ trôi mau</p>
@@ -94,13 +190,13 @@ const SongDetail = ({ albums, songs }) => {
                         <p>[Pre chorus:]</p>
                         <a href=''>Xem toàn bộ</a>
                     </Row>
-                    <Row style={{ lineHeight: "50px", marginTop:"20px"}}>
+                    <Row style={{ lineHeight: "50px", marginTop: "20px" }}>
                         <Col md={3}><h1>Album</h1></Col>
                     </Row>
                     <hr />
                     <Row>
-                        {albums.map((album, index) => (
-                            <Col key={index} md={3}>
+                        {albums.map((album, idx) => (
+                            <Col md={3} key={idx}>
                                 <Card className="mb-4 album-card">
                                     <Card.Img variant="top" src={album.cover} className="album-card-img" />
                                     <Card.Body>
@@ -117,12 +213,15 @@ const SongDetail = ({ albums, songs }) => {
                     <Row>
                         <h4>Nghe Tiếp</h4>
                     </Row>
-                    {songs.map((song, index) => (
+                    {songsBXH1.map((s, index) => (
+
                         <Row key={index} className="my-2">
                             <Col md='2' className={`index-color-${index + 1}`}>{index + 1}</Col>
                             <Col>
-                                <Row>{song.title}</Row>
-                                <Row>{song.artist}</Row>
+                                <Row>
+                                    <a href={`/song/${s.id}`}>{s.title}</a>
+                                </Row>
+                                <Row>{s.artist}</Row>
                             </Col>
                         </Row>
                     ))}
@@ -132,4 +231,3 @@ const SongDetail = ({ albums, songs }) => {
     );
 };
 
-export default SongDetail;
