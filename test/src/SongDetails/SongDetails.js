@@ -3,6 +3,8 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
 import './SongDetails.css';
 import Headerhomepage from '../HomePage/Header';
+import { Link } from 'react-router-dom';
+
 
 import MusicPlayer from '../MusicPlayer';
 import { MusicPlayerContext } from '../MusicPlayerContext';
@@ -13,7 +15,7 @@ export default function SongDetail() {
     const { sID } = useParams();
     const [albums, setAlbums] = useState([]);
     const [songsBXH1, setSongsBXH1] = useState([]);
-    const { setCurrentSong, setIsPlaying } = useContext(MusicPlayerContext);
+    // const { setCurrentSong, setIsPlaying } = useContext(MusicPlayerContext);
 
     const lyrics = [
         { time: 0, text: "Nếu em nói mình xa nhau" },
@@ -34,11 +36,13 @@ export default function SongDetail() {
             .then(res => res.json())
             .then(data => {
                 setSong(data);
-                setCurrentSong(data);  // Cập nhật bài hát hiện tại trong Context
-                setIsPlaying(true);    // Tự động phát bài hát
+                console.log("a");
+                // setCurrentSong(data);  // Cập nhật bài hát hiện tại trong Context
+                // setIsPlaying(true);    // Tự động phát bài hát
+                localStorage.setItem('idsong', JSON.stringify(sID));
             })
             .catch(e => console.log(e));
-    }, [sID, setCurrentSong, setIsPlaying]);
+    }, [sID]);
      
    
 
@@ -130,7 +134,7 @@ export default function SongDetail() {
                             <Col md='2' className={`index-color-${index + 1}`}>{index + 1}</Col>
                             <Col>
                                 <Row>
-                                    <a href={`/song/${s.id}`}>{s.title}</a>
+                                    < Link to={`/song/${s.id}`}>{s.title}</Link>
                                 </Row>
                                 <Row>{s.artist}</Row>
                             </Col>

@@ -11,7 +11,6 @@ import { MusicPlayerProvider } from './MusicPlayerContext';
 
 function App() {
     return (
-        <MusicPlayerProvider>
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<HomePage />} />
@@ -24,7 +23,6 @@ function App() {
                 </Routes>
                 <MusicPlayer></MusicPlayer>
             </BrowserRouter>
-        </MusicPlayerProvider>
     );
 }
 
