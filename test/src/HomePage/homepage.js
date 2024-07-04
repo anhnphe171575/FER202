@@ -1,9 +1,10 @@
 import { Button, Container, Form, Nav, Navbar, Col, Row, Image, Carousel, NavDropdown, InputGroup } from 'react-bootstrap'
-
+import React, { useEffect, useState } from 'react';
 import Headerhomepage from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import BXH from './BXH';
+import MusicPlayer from '../MusicPlayer';
 
   const categories = [
     {
@@ -46,8 +47,17 @@ import BXH from './BXH';
   
   
 export default function HomePage() {
+  const [selectedSong, setSelectedSong] = useState(null);
 
+  useEffect(() => {
+      const localSong = localStorage.getItem('selectedSong');
+      console.log(localSong);
+      if (localSong) {
+          setSelectedSong(JSON.parse(localSong));
+      }
+  }, []);
     return (
+      <div>
         <Container>
         <Row>
             <Headerhomepage/>
@@ -65,5 +75,7 @@ export default function HomePage() {
             <Row>
                 <Footer></Footer>
              </Row>
+             
             </Container>
+ư            </div>
     );}

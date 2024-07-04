@@ -21,7 +21,7 @@ export default function Register() {
         e.preventDefault();
         let message = "";
         let status = true;
-        if(users.filter(u => u.email === email)){
+        if(!users.filter(u => u.email === email)){
             message += "Email đã tồn tại";
             status = false;
         }
@@ -38,7 +38,7 @@ export default function Register() {
                 email: email,
                 password: password
             };
-            fetch("http://localhost:9999/users", {
+            fetch("http://localhost:9999/users", {  
                 method: "POST",
                 body: JSON.stringify(newUsers),
                 headers: {

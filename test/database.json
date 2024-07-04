@@ -73,6 +73,19 @@
       "id": "9f65"
     }
   ],
+
+    "slider":[
+      {
+        "id": "1"
+      },
+      {
+        "id" : "2"
+      },
+      {
+        "id" : "3"
+      }
+    ],
+
   "categories": [
     {
       "id": "1",
@@ -115,8 +128,13 @@
       "fullName": "Nguyễn Phú Anh",
       "email": "phuanhpro11@gmail.com",
       "password": "123"
+    },
+    {
+      "id": "5a82",
+      "fullName": "Nguyễn Phú Anh",
+      "email": "phuanhpro11@gmail.com",
+      "password": "123"
     }
-    
   ],
   "listsongs": [
     {
