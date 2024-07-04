@@ -1,41 +1,41 @@
-
+import React, { useState, useEffect } from 'react';
 import { Col, Container, Row, Card } from "react-bootstrap";
 import './Album.css';
 import Headerhomepage from "../HomePage/Header";
-const albums = [
-  { title: 'Tên Album 1', cover: './images/image1.jpg' },
-  { title: 'Tên Album 2', cover: './images/image2.jpg' },
-  { title: 'Tên Album 3', cover: './images/image3.jpg' },
-  { title: 'Tên Album 4', cover: './images/image4.jpg' },
-  { title: 'Tên Album 5', cover: './images/image1.jpg' },
-  { title: 'Tên Album 6', cover: './images/image2.jpg' },
-  { title: 'Tên Album 7', cover: './images/image3.jpg' },
-  { title: 'Tên Album 8', cover: './images/image4.jpg' }
-];
+import { Link } from 'react-router-dom';
+
 export default function Album() {
+  const [albums, setAlbums] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:9999/albums`)
+      .then(res => res.json())
+      .then(data => setAlbums(data))
+      .catch(e => console.log(e));
+  }, []);
   return (
     <Container>
       <Row>
         <Headerhomepage></Headerhomepage>
       </Row>
-      <Row style={{ lineHeight: "50px"  }}>
+      <Row style={{ lineHeight: "50px" }}>
         <Col md={3}><h1>Album</h1></Col>
         <Col md={2}>Mới nhất</Col>
         <Col md={2}>Nghe nhiều</Col>
       </Row>
-      <hr/>
+      <hr />
       <Row>
-        {albums.map((album, index) => (          
+        {albums.map((album, index) => (
           <Col key={index} md={3}>
             <Card className="mb-4 album-card">
-              <Card.Img variant="top" src={album.cover} className="album-card-img" />
+              <Link to={`/songlist/${album.id}`}><Card.Img variant="top" src={album.cover} className="album-card-img" /></Link>
               <Card.Body>
                 <Card.Title className="album-card-title">{album.title}</Card.Title>
               </Card.Body>
             </Card>
-          </Col>         
+          </Col>
         ))}
-        </Row>
+      </Row>
     </Container>
   );
 }

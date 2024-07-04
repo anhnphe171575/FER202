@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
+
 import './BXH.css'
 const BXH = () => {
     const [songs, setSongs] = useState([]);
@@ -23,7 +25,7 @@ const BXH = () => {
                     <Row key={index} className="my-2">
                         <Col md='2' className={`index-color-${index + 1}`}>{index + 1}</Col>
                         <Col>
-                            <Row><a href={`/song/${song.id}`}>{song.title}</a></Row>
+                            <Row><Link to={`/song/${song.id}`}>{song.title}</Link></Row>
                             <Row>{song.artist}</Row>
                         </Col>
                     </Row>

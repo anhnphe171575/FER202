@@ -7,7 +7,7 @@ import SongDetail from './SongDetails/SongDetails';
 import Login from './Login/Login';
 import Register from './Register/Register';
 import MusicPlayer from './MusicPlayer';
-import { MusicPlayerProvider } from './MusicPlayerContext';
+import SongList from './SongLists/SongList';
 
 function App() {
     return (
@@ -20,6 +20,7 @@ function App() {
                     <Route path='/Login' element={<Login />} />
                     <Route path='/Register' element={<Register />} />
                     <Route path='/song/:sID' element={<SongDetail />} />
+                    <Route path='/songlist/:aID' element={<SongList />} />
                 </Routes>
                 <MusicPlayer></MusicPlayer>
             </BrowserRouter>

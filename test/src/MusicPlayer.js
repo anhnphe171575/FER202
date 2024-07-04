@@ -1,16 +1,18 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { MusicPlayerContext } from './MusicPlayerContext';
 import './MusicPlayer.css';
+import { useParams } from 'react-router-dom';
+import { useSongId } from './hooks/useSongId';
 
 const MusicPlayer = () => {
     
+    const [songId] = useSongId();
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [currentLyric, setCurrentLyric] = useState("Nếu em nói mình xa nhau");
     const progressBarRef = React.useRef(null);
     const audioRef = useRef(new Audio());
-    const [song, setSong] = useState([]);
+    const [song, setSong] = useState({});
     const lyrics = [
         { time: 0, text: "Nếu em nói mình xa nhau" },
         { time: 5, text: "Người ta sẽ không còn thấy nhau nữa" },
@@ -19,16 +21,13 @@ const MusicPlayer = () => {
     ];
 
     useEffect(() => {
-        const savedSongId = localStorage.getItem('idsong');
-        const parsedUser = JSON.parse(savedSongId);
-        console.log(parsedUser)
-        if (savedSongId) {
-            fetch(`http://localhost:9999/listsongs/${parsedUser}`)
+        if (songId) {
+            fetch(`http://localhost:9999/listsongs/${songId}`)
                 .then(res => res.json())
                 .then(data => setSong(data))
                 .catch(e => console.log(e));
         }
-    }, []);
+    }, [songId]);
 
     useEffect(() => {
         const audio = audioRef.current;
@@ -87,7 +86,7 @@ const MusicPlayer = () => {
         const seconds = Math.floor(time % 60);
         return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     };
-    return (
+    return songId ? (
         <div className="music-player">
         <div className="song-info">
             <img src={song.imgSrc} alt="Album cover" className="cover-art" />
@@ -113,7 +112,7 @@ const MusicPlayer = () => {
         </div>
         <div className="quality">128kbps</div>
     </div>
-    );
+    ): null;
 };
 
 export default MusicPlayer;
