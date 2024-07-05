@@ -1,5 +1,6 @@
 import { Container, Row, Col, Image, Form, Button, FormCheck } from 'react-bootstrap';
 import React, { useState , useEffect} from 'react';
+import {Link} from 'react-router-dom'
 
 import '../Register/Register.css';
 export default function Login() {
@@ -72,7 +73,7 @@ export default function Login() {
                         </Form>
                         <div className="login-link"> <a href="#"><u>Forgot password?</u></a></div>
                         <hr />
-                        <div className="login-link" >Do not have an account? <a href="#"><u>Register</u></a></div>
+                        <div className="login-link" >Do not have an account? <Link  to="/Register"><Button className="create-account-btn"><u>Register</u></Button></Link></div>
                     </div>
                 </Col>
             </Row>

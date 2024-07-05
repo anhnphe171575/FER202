@@ -15,9 +15,12 @@ import HomePage from './HomePage/homepage';
 // import Ranking from './BXH/BXH';
 // import Login from './Login/Login';
 // import Register from './Register/Register';
-import Header from './SongDetails/Header';
+import Header from './Admin/Header';
 import SongDetail from './SongDetails/SongDetails';
 import App from './App'
+import ManageTable from './Admin/Manage';
+import { Container } from 'react-bootstrap';
+import Profile from './Profile/Profile';
 
 
 
@@ -69,7 +72,12 @@ const playlist = [
 
 root.render(
   <React.StrictMode>
-    <App></App>  
+    {/* <App></App>   */}
+    <Container>
+    <Header></Header>
+    {/* <ManageTable/> */}
+    <Profile/>
+    </Container>
   </React.StrictMode>
 );
 
