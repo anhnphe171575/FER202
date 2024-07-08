@@ -21,6 +21,7 @@ import App from './App'
 import ManageTable from './Admin/Manage';
 import { Container } from 'react-bootstrap';
 import Profile from './Profile/Profile';
+import PlaylistUpdateForm from './Playlist/addPlayList';
 
 
 
@@ -72,12 +73,8 @@ const playlist = [
 
 root.render(
   <React.StrictMode>
-    {/* <App></App>   */}
-    <Container>
-    <Header></Header>
-    {/* <ManageTable/> */}
-    <Profile/>
-    </Container>
+    <App></App>  
+    {/* <PlaylistUpdateForm>  </PlaylistUpdateForm> */}
   </React.StrictMode>
 );
 

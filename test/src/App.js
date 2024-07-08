@@ -8,6 +8,9 @@ import Login from './Login/Login';
 import Register from './Register/Register';
 import MusicPlayer from './MusicPlayer';
 import SongList from './SongLists/SongList';
+import Profile from './Profile/Profile';
+import PlaylistAddForm from './Playlist/addPlayList';
+import PlaylistUpdateForm from './Playlist/editPlayList';
 
 function App() {
     return (
@@ -21,6 +24,10 @@ function App() {
                     <Route path='/Register' element={<Register />} />
                     <Route path='/song/:sID' element={<SongDetail />} />
                     <Route path='/songlist/:aID' element={<SongList />} />
+                    <Route path='/userprofile/:uID'element={<Profile></Profile>} />
+                    <Route path='/addPlaylist/' element={<PlaylistAddForm/>}/>
+                    <Route path='/editplaylist/:pID' element={<PlaylistUpdateForm/>}/>
+
                 </Routes>
                 <MusicPlayer></MusicPlayer>
             </BrowserRouter>

@@ -3,6 +3,7 @@ import { Button, Container, Form, Nav, Navbar, Col, Row, Image, Carousel, NavDro
 import { Link } from 'react-router-dom';
 
 import './Header.css';
+import Carousel1 from './Carousel';
 
 export default function Headerhomepage() {
     const [user, setUser] = useState(null);
@@ -62,7 +63,7 @@ export default function Headerhomepage() {
                                 {user.fullName}
                                 </Dropdown.Toggle>                         
                                 <Dropdown.Menu>
-                                  <Dropdown.Item href="#/action-1">Trang Cá Nhân</Dropdown.Item>
+                                  <Dropdown.Item as={Link} to={`/userprofile/${user.id}`}>Trang Cá Nhân</Dropdown.Item>
                                   <Dropdown.Item onClick={handleRemove}>Đăng Xuất</Dropdown.Item>
                                 </Dropdown.Menu>
                               </Dropdown>
@@ -82,28 +83,7 @@ export default function Headerhomepage() {
                     </Container>
                 </Navbar>
             </Row>
-            <Row>
-                <Carousel>
-                    <Carousel.Item>
-                        <Image src="/image/image1.jpg" className='carousel-image'></Image>
-                        <Carousel.Caption>
-
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <Image src="/image/image2.jpg" className='carousel-image'></Image>
-                        <Carousel.Caption>
-
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <Image src="/image/image3.jpg" className='carousel-image'></Image>
-                        <Carousel.Caption>
-
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                </Carousel>
-            </Row>
+            
         </Container>
     );
 }

@@ -15,14 +15,15 @@ export default function SongList() {
     const [sid, setSongID1] = useState("");
     const [albums, setAlbums] = useState([]);
     const [songsBXH1, setSongsBXH1] = useState([]);
-
+   
+    
     const lyrics = [
         { time: 0, text: "Nếu em nói mình xa nhau" },
         { time: 5, text: "Người ta sẽ không còn thấy nhau nữa" },
         { time: 10, text: "Và chúng ta sẽ mất nhau thật sao?" },
         // Thêm các dòng lời bài hát khác với thời gian tương ứng
     ];
-
+    console.log(aID);
  
 
     useEffect(() => {
@@ -39,6 +40,7 @@ export default function SongList() {
                 const filteredSongs = data.filter(song => song.ranking >= 1 && song.ranking <= 10);
                 const albumSongs = data.filter(song => song.AlbumID === Number(aID));
                 setSongs(albumSongs);
+                console.log(albumSongs)
                 setSongsBXH1(filteredSongs);
                 if (albumSongs.length > 0) {
                     setSongplay(albumSongs[0]); 
@@ -46,7 +48,7 @@ export default function SongList() {
                 }
             })
             .catch(error => console.error('Error fetching and filtering songs:', error));
-    }, []);
+    }, [aID]);
 
     const handleSongClick = (id) => {
         const selectedSong = songs.find(song => song.id === id);
@@ -132,8 +134,7 @@ export default function SongList() {
                         {albums.map((album, idx) => (
                             <Col md={3} key={idx}>
                                 <Card className="mb-4 album-card">
-                                    <Card.Img variant="top" src={album.cover} className="album-card-img" />
-                                    <Card.Body>
+                                <Link to={`/songlist/${album.id}`}><Card.Img variant="top" src={album.cover} className="album-card-img" /></Link>                                     <Card.Body>
                                         <Card.Title className="album-card-title">{album.title}</Card.Title>
                                     </Card.Body>
                                 </Card>

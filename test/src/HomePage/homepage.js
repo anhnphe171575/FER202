@@ -5,6 +5,7 @@ import Main from './Main';
 import Footer from './Footer';
 import BXH from './BXH';
 import MusicPlayer from '../MusicPlayer';
+import Carousel1 from './Carousel';
 
   const categories = [
     {
@@ -61,6 +62,9 @@ export default function HomePage() {
         <Container>
         <Row>
             <Headerhomepage/>
+        </Row>
+        <Row>
+          <Carousel1></Carousel1>
         </Row>
             <Container style={{ marginTop:"50px"}}>
             <Row>

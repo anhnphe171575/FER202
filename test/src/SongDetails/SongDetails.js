@@ -42,9 +42,6 @@ export default function SongDetail() {
             .then(data => {
                 setSong(data);
                 console.log("a");
-                // setCurrentSong(data);  // Cập nhật bài hát hiện tại trong Context
-                // setIsPlaying(true);    // Tự động phát bài hát
-                localStorage.setItem('idsong', JSON.stringify(sID));
             })
             .catch(e => console.log(e));
     }, [sID]);
