@@ -107,7 +107,7 @@ export default function Profile() {
 
         <Row className="mt-4">
           <Col md={8} className="mb-3">
-            <Link to={`/addPlaylist/${uID}`}><Button variant="primary" >Add Playlist</Button></Link>
+            <Link to={`/addPlaylist`}><Button variant="primary" >Add Playlist</Button></Link>
           </Col>
           {activeTab === 'playlist' && playlist.map((pl, idx) => (
 

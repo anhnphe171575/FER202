@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import './PlaylistUpdateForm.css';
 
 const PlaylistAddForm = () => {
-    const { uID } = useParams();
     const [playlistName, setPlaylistName] = useState('');
     const [singer, setSinger] = useState('');
     const [category, setCategory] = useState([]);
@@ -31,7 +30,7 @@ const PlaylistAddForm = () => {
     }, []);  
     
     const handleImageChange = (e) => {
-        setImage(e.target.files[0]);
+        setImage(URL.createObjectURL(e.target.files[0]));
     };
 
     const handleSongSearchChange = (e) => {
@@ -64,7 +63,7 @@ const PlaylistAddForm = () => {
         const songIds = songs.map(song => song.id);
         const newPlayList = {
             title: playlistName,
-            userid: "9a78",
+            userid: user.id,
             img: image,
             description: description,
             trackid: songIds

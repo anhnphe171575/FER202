@@ -25,7 +25,7 @@ function App() {
                     <Route path='/song/:sID' element={<SongDetail />} />
                     <Route path='/songlist/:aID' element={<SongList />} />
                     <Route path='/userprofile/:uID'element={<Profile></Profile>} />
-                    <Route path='/addPlaylist/' element={<PlaylistAddForm/>}/>
+                    <Route path='/addPlaylist' element={<PlaylistAddForm/>}/>
                     <Route path='/editplaylist/:pID' element={<PlaylistUpdateForm/>}/>
 
                 </Routes>
