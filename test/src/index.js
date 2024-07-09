@@ -22,6 +22,7 @@ import ManageTable from './Admin/Manage';
 import { Container } from 'react-bootstrap';
 import Profile from './Profile/Profile';
 import PlaylistUpdateForm from './Playlist/addPlayList';
+import ManageArtists from './Admin/ManageArtist';
 
 
 
@@ -73,8 +74,9 @@ const playlist = [
 
 root.render(
   <React.StrictMode>
-    <App></App>  
+    {/* <App></App>   */}
     {/* <PlaylistUpdateForm>  </PlaylistUpdateForm> */}
+    <ManageArtists/>
   </React.StrictMode>
 );
 

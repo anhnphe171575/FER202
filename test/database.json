@@ -339,5 +339,126 @@
       "plays": 345678,
       "ranking": 16
     }
+  ],
+  "artist": [
+    {
+      "id": "1",
+      "name": "Sơn Tùng M-TP",
+      "cateId": "1",
+      "Gender": "Male",
+      "dob": "1997-01-01"
+    },
+    {
+      "id": "2",
+      "name": "Lou Hoàng",
+      "cateId": "2",
+      "Gender": "Male",
+      "dob": "2006-06-10"
+    },
+    {
+      "id": "3",
+      "name": "Artist 2",
+      "cateId": "1",
+      "Gender": "Male",
+      "dob": "1992"
+    },
+    {
+      "id": "4",
+      "name": "Artist 3",
+      "cateId": "1",
+      "Gender": "Female",
+      "dob": "1995"
+    },
+    {
+      "id": "5",
+      "name": "Artist 4",
+      "cateId": "2",
+      "Gender": "Male",
+      "dob": "1990"
+    },
+    {
+      "id": "6",
+      "name": "Artist 5",
+      "cateId": "2",
+      "Gender": "Female",
+      "dob": "1988"
+    },
+    {
+      "id": "7",
+      "name": "Artist 6",
+      "cateId": "2",
+      "Gender": "Male",
+      "dob": "1985"
+    },
+    {
+      "id": "8",
+      "name": "Artist 7",
+      "cateId": "2",
+      "Gender": "Female",
+      "dob": "1991"
+    },
+    {
+      "id": "9",
+      "name": "Artist 8",
+      "cateId": "3",
+      "Gender": "Male",
+      "dob": "1987"
+    },
+    {
+      "id": "10",
+      "name": "Artist 9",
+      "cateId": "3",
+      "Gender": "Female",
+      "dob": "1989"
+    },
+    {
+      "id": "11",
+      "name": "Artist 10",
+      "cateId": "3",
+      "Gender": "Male",
+      "dob": "1993"
+    },
+    {
+      "id": "12",
+      "name": "Artist 11",
+      "cateId": "3",
+      "Gender": "Female",
+      "dob": "1996"
+    },
+    {
+      "id": "13",
+      "name": "Artist 12",
+      "cateId": "4",
+      "Gender": "Male",
+      "dob": "1984"
+    },
+    {
+      "id": "14",
+      "name": "Artist 13",
+      "cateId": "4",
+      "Gender": "Female",
+      "dob": "1990"
+    },
+    {
+      "id": "15",
+      "name": "Artist 14",
+      "cateId": "4",
+      "Gender": "Male",
+      "dob": "1986"
+    },
+    {
+      "id": "16",
+      "name": "Artist 15",
+      "cateId": "4",
+      "Gender": "Female",
+      "dob": "1990"
+    },
+    {
+      "id": "17",
+      "name": "gssđ",
+      "cateId": "2",
+      "Gender": "Male",
+      "dob": "2024-07-11"
+    }
   ]
 }
