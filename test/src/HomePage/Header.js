@@ -23,6 +23,7 @@ export default function Headerhomepage() {
     }, []);
     const handleRemove =() =>{
        sessionStorage.removeItem("user")
+       setUser(null);
        window.location.reload();
     }
     return (
@@ -42,6 +43,13 @@ export default function Headerhomepage() {
                                 <Nav.Link as={Link} to="/BXH" className="me-3">BXH</Nav.Link>
                                 <Nav.Link href="#action3" className="me-3">PlayList</Nav.Link>
                                 <Nav.Link as={Link} to="/Album" className="me-3">Album</Nav.Link>
+                                {user && user.RoleId === "1" && (
+                                    <>
+                                        <Nav.Link as={Link} to="/ManageAlbum" className="me-3">ManageAlbums</Nav.Link>
+                                        <Nav.Link as={Link} to="/ManageSong" className="me-3">ManageSongs</Nav.Link>
+                                        <Nav.Link as={Link} to="/ManageArtist" className="me-3">ManageArtists</Nav.Link>
+                                    </>
+                                )}
                             </Nav>
                             <Form className="d-flex me-2">
                                 <InputGroup>

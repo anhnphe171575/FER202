@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Button, Row, Col } from 'react-bootstrap';
+import HeaderAdmin from './Header';
 
 const ManageTable = () => {
   const [songs, setSongs] = useState([]);
@@ -13,6 +14,7 @@ const ManageTable = () => {
 
   return (
     <div>
+      <Row><HeaderAdmin/></Row>
       <Row>
         <Col md={10}>
       <h1>Manage</h1>

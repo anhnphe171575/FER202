@@ -22,7 +22,11 @@ export default function Login() {
         if (user) {
             sessionStorage.setItem('user', JSON.stringify(user));
             console.log('Login successful');
-            window.location.href="/Home";
+            if (user.RoleId === "1") {
+                window.location.href = "/Admin";
+            } else {
+                window.location.href = "/Home";
+            }
         } else {
             alert('Email Đăng Nhập Hoặc Mật Khẩu Không Đúng');
         }

@@ -36,7 +36,8 @@ export default function Register() {
             const newUsers = {
                 fullName: fullName,
                 email: email,
-                password: password
+                password: password,
+                RoleId: "2"
             };
             fetch("http://localhost:9999/users", {  
                 method: "POST",

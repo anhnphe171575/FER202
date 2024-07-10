@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Button, Row, Col, Modal, Form } from 'react-bootstrap';
+import HeaderAdmin from './Header';
 
 const ManageArtists = () => {
   const [artists, setArtists] = useState([]);
@@ -81,6 +82,9 @@ const ManageArtists = () => {
 
   return (
     <div>
+      <Row>
+        <HeaderAdmin/>
+      </Row>
       <Row>
         <Col md={8}>
           <h1>Manage Artists</h1>
