@@ -1,42 +1,36 @@
-/* PlaylistUpdateForm.css */
+.form-container {
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 700px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.form-title {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
 
 .form-label {
-    font-weight: bold;
-    font-size: 1rem;
-    color: #333;
-  }
-  
-  .form-control {
-    border-radius: 0.25rem;
-    font-size: 1rem;
-  }
-  
-  .form-text {
-    font-size: 0.875rem;
-    color: #6c757d;
-  }
-  
-  .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-  }
-  
-  .form-group {
-    margin-bottom: 1rem;
-  }
-  
-  .form-container {
-    padding: 2rem;
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
-    background-color: #f9f9f9;
-  }
-  
-  .form-title {
-    margin-bottom: 2rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-align: center;
-    color: #007bff;
-  }
-  
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-control {
+  height: 38px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* You can add more styles here for specific elements */

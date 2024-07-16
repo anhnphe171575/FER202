@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button, Col, Row, ListGroup, InputGroup, FormControl } from 'react-bootstrap';
+import { Form, Button, Col, Row, ListGroup, InputGroup, FormControl,Container } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
 import './PlaylistUpdateForm.css';
+import Headerhomepage from '../HomePage/Header';
 
 const PlaylistUpdateForm = () => {
     const { pID } = useParams();
     const [playlistName, setPlaylistName] = useState('');
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState("");
     const [description, setDescription] = useState('');
     const [songs, setSongs] = useState([]);
     const [songSearch, setSongSearch] = useState('');
@@ -28,9 +29,7 @@ const PlaylistUpdateForm = () => {
         }
     }, []);
 
-    const handleImageChange = (e) => {
-        setImage(e.target.files[0]);
-    };
+   
 
     const handleSongSearchChange = (e) => {
         setSongSearch(e.target.value);
@@ -112,6 +111,10 @@ const PlaylistUpdateForm = () => {
     };
 
     return (
+        <Container>
+        <Row>
+                <Headerhomepage/>
+            </Row>
         <div className="form-container">
             <h1 className="form-title">CẬP NHẬT PLAYLIST</h1>
             <Form onSubmit={handleSubmit}>
@@ -132,13 +135,13 @@ const PlaylistUpdateForm = () => {
                     <Form.Label column sm={2} className="form-label">Hình ảnh playlist</Form.Label>
                     <Col sm={10}>
                         <Form.Control
-                            type="file"
-                            accept="image/*"
-                            onChange={handleImageChange}
+                            type="text"
+            
+                            onChange={(e) => setImage(e.target.value)}
                             className="form-control"
                         />
                         <Form.Text className="form-text">
-                            (Hình tối thiểu 500 x 500 pixels. Nếu nhỏ hơn sẽ bị mất hình và lấy hình mặc định của NhacCuaTui)
+                            (Hình tối thiểu 500 x 500 pixels)
                         </Form.Text>
                     </Col>
                 </Form.Group>
@@ -192,6 +195,7 @@ const PlaylistUpdateForm = () => {
                 <Button variant="primary" type="submit" className="btn-primary">Cập nhật</Button>
             </Form>
         </div>
+        </Container>
     );
 };
 

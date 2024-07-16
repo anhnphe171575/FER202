@@ -2,11 +2,12 @@ import { Row, Col, Card, Container } from 'react-bootstrap'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './Playlist.css'
 
-    const PlaylistComponent = ({playlist}) => {   
+    const PlaylistComponent = () => {   
+      
     return (
       <Container>
       <Row>
-      <h2><a href="https://example.com">Playlist</a></h2>
+      <h2>Playlist</h2>
       {playlist.map((playlistItem, index) => (
           <Col key={index} md={4} lg={3} sm={6} xs={12}>
             <Card style={{ margin: '10px' }}>

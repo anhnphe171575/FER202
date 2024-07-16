@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button, Col, Row, ListGroup, InputGroup, FormControl } from 'react-bootstrap';
+import { Form, Button, Col, Row, ListGroup, InputGroup, FormControl, Container } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
 import './PlaylistUpdateForm.css';
+import Headerhomepage from '../HomePage/Header';
 
 const PlaylistAddForm = () => {
     const [playlistName, setPlaylistName] = useState('');
     const [singer, setSinger] = useState('');
     const [category, setCategory] = useState([]);
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState("");
     const [description, setDescription] = useState('');
     const [songs, setSongs] = useState([]);
     const [songSearch, setSongSearch] = useState('');
     const [searchResult, setSearchResult] = useState([]);
 
     const [user, setUser] = useState(null);
-    
+
     useEffect(() => {
         const storedUser = sessionStorage.getItem("user");
 
@@ -27,11 +28,9 @@ const PlaylistAddForm = () => {
                 // Handle parsing error if necessary
             }
         }
-    }, []);  
-    
-    const handleImageChange = (e) => {
-        setImage(URL.createObjectURL(e.target.files[0]));
-    };
+    }, []);
+
+   
 
     const handleSongSearchChange = (e) => {
         setSongSearch(e.target.value);
@@ -97,86 +96,91 @@ const PlaylistAddForm = () => {
     };
 
     return (
-        <div className="form-container">
-            <h1 className="form-title">CẬP NHẬT PLAYLIST</h1>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group as={Row} controlId="formPlaylistName">
-                    <Form.Label column sm={2} className="form-label">Tên Playlist</Form.Label>
-                    <Col sm={10}>
-                        <Form.Control
-                            type="text"
-                            value={playlistName}
-                            onChange={(e) => setPlaylistName(e.target.value)}
-                            placeholder="Tên Playlist"
-                            className="form-control"
-                        />
-                    </Col>
-                </Form.Group>
+        <Container>
+            <Row>
+                <Headerhomepage></Headerhomepage>
+            </Row>
+            <div className="form-container">
 
-                <Form.Group as={Row} controlId="formImage">
-                    <Form.Label column sm={2} className="form-label">Hình ảnh playlist</Form.Label>
-                    <Col sm={10}>
-                        <Form.Control
-                            type="file"
-                            accept="image/*"
-                            onChange={handleImageChange}
-                            className="form-control"
-                        />
-                        <Form.Text className="form-text">
-                            (Hình tối thiểu 500 x 500 pixels. Nếu nhỏ hơn sẽ bị mất hình và lấy hình mặc định của NhacCuaTui)
-                        </Form.Text>
-                    </Col>
-                </Form.Group>
-
-                <Form.Group as={Row} controlId="formDescription">
-                    <Form.Label column sm={2} className="form-label">Mô tả</Form.Label>
-                    <Col sm={10}>
-                        <Form.Control
-                            as="textarea"
-                            rows={3}
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                            placeholder="Mô tả"
-                            className="form-control"
-                        />
-                    </Col>
-                </Form.Group>
-
-                <Form.Group as={Row} controlId="formSongs">
-                    <Form.Label column sm={2} className="form-label">Danh sách bài hát</Form.Label>
-                    <Col sm={10}>
-                        <InputGroup className="mb-3">
-                            <FormControl
-                                placeholder="Nhập từ khóa hoặc link bài hát"
-                                value={songSearch}
-                                onChange={handleSongSearchChange}
+                <h1 className="form-title">Thêm PLAYLIST</h1>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group as={Row} controlId="formPlaylistName">
+                        <Form.Label column sm={2} className="form-label">Tên Playlist</Form.Label>
+                        <Col sm={10}>
+                            <Form.Control
+                                type="text"
+                                value={playlistName}
+                                onChange={(e) => setPlaylistName(e.target.value)}
+                                placeholder="Tên Playlist"
+                                className="form-control"
                             />
-                        </InputGroup>
-                        <ListGroup>
-                            {searchResult.map((song, index) => (
-                                <ListGroup.Item key={index}>
-                                    {song.title}
-                                    <Button variant="outline-secondary" onClick={() => addSong(song)} className="float-end">
-                                        Thêm
-                                    </Button>
-                                </ListGroup.Item>
-                            ))}
-                        </ListGroup>
-                        <ListGroup>
-                            {songs.map((song, index) => (
-                                <ListGroup.Item key={index}>
-                                    {song.title}
-                                    <Button variant="danger" size="sm" onClick={() => removeSong(index)} className="float-end">
-                                        Xóa
-                                    </Button>
-                                </ListGroup.Item>
-                            ))}
-                        </ListGroup>
-                    </Col>
-                </Form.Group>
-                <Button variant="primary" type="submit" className="btn-primary">Cập nhật</Button>
-            </Form>
-        </div>
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group as={Row} controlId="formImage">
+                        <Form.Label column sm={2} className="form-label">Hình ảnh playlist</Form.Label>
+                        <Col sm={10}>
+                            <Form.Control
+                                type="text"
+                                onChange={(e) => setImage(e.target.value)}
+                                className="form-control"
+                            />
+                            <Form.Text className="form-text">
+                                (Hình tối thiểu 500 x 500 pixels)
+                            </Form.Text>
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group as={Row} controlId="formDescription">
+                        <Form.Label column sm={2} className="form-label">Mô tả</Form.Label>
+                        <Col sm={10}>
+                            <Form.Control
+                                as="textarea"
+                                rows={3}
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                placeholder="Mô tả"
+                                className="form-control"
+                            />
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group as={Row} controlId="formSongs">
+                        <Form.Label column sm={2} className="form-label">Danh sách bài hát</Form.Label>
+                        <Col sm={10}>
+                            <InputGroup className="mb-3">
+                                <FormControl
+                                    placeholder="Nhập từ khóa hoặc link bài hát"
+                                    value={songSearch}
+                                    onChange={handleSongSearchChange}
+                                />
+                            </InputGroup>
+                            <ListGroup>
+                                {searchResult.map((song, index) => (
+                                    <ListGroup.Item key={index}>
+                                        {song.title}
+                                        <Button variant="outline-secondary" onClick={() => addSong(song)} className="float-end">
+                                            Thêm
+                                        </Button>
+                                    </ListGroup.Item>
+                                ))}
+                            </ListGroup>
+                            <ListGroup>
+                                {songs.map((song, index) => (
+                                    <ListGroup.Item key={index}>
+                                        {song.title}
+                                        <Button variant="danger" size="sm" onClick={() => removeSong(index)} className="float-end">
+                                            Xóa
+                                        </Button>
+                                    </ListGroup.Item>
+                                ))}
+                            </ListGroup>
+                        </Col>
+                    </Form.Group>
+                    <Button variant="primary" type="submit" className="btn-primary">Cập nhật</Button>
+                </Form>
+            </div>
+        </Container>
     );
 };
 

@@ -16,7 +16,6 @@ import PlaylistAddForm from './Playlist/addPlayList';
 import PlaylistUpdateForm from './Playlist/editPlayList';
 import Admin from './Admin/Admin';
 import ManageAlbums from './Admin/ManageAlbum';
-import ManageTable from './Admin/Manage';
 import ManageArtists from './Admin/ManageArtist';
 
 function App() {

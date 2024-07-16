@@ -88,7 +88,7 @@ export default function Profile() {
       <Row className="justify-content-center text-center py-5" style={{ backgroundImage: `url(/images/anhnencanhan.jpg)`, backgroundSize: 'cover', color: 'white' }}>
         <Col md={2}>
           <Image src={"/images/avataruser.png"} roundedCircle style={{ width: '150px', height: '150px' }} />
-          <h2>{user.fullName}</h2>
+          <h3>{user.fullName}</h3>
           <p>ID: {user.id}</p>
           {/* <p>Dob: {user.dob}</p> */}
           <p>Gender: {user.Gender}</p>
@@ -106,18 +106,22 @@ export default function Profile() {
         </Nav>
 
         <Row className="mt-4">
-          <Col md={8} className="mb-3">
-            <Link to={`/addPlaylist`}><Button variant="primary" >Add Playlist</Button></Link>
-          </Col>
+          {activeTab === 'playlist' && (
+            <Col md={8} className="mb-3">
+              <Link to={`/addPlaylist`}>
+                <Button variant="primary">Add Playlist</Button>
+              </Link>
+            </Col>
+          )}
           {activeTab === 'playlist' && playlist.map((pl, idx) => (
 
             <Col md={8}>
               <CardGroup>
                 <Card>
-                  <Card.Img variant="top" src={pl.img} />
+                  <Card.Img variant="top" src={pl.img} style={{width:"100px"}}/>
                   <Card.Body>
                     <Card.Title>{pl.title}</Card.Title>
-                    <Button variant="warning" onClick={() => handleEditPlaylist(pl.id)}>Chỉnh sửa</Button>
+                    <Button variant="warning" onClick={() => handleEditPlaylist(pl.id)} style={{paddingLeft:"10px"}}>Chỉnh sửa</Button>
                     <Button variant="danger" onClick={() => handleDeletePlaylist(pl.id)}>Xóa</Button>
                   </Card.Body>
                 </Card>

@@ -8,6 +8,8 @@ import { useSongId } from '../hooks/useSongId';
 
 
 export default function SongList() {
+    const [artists, setArtists] = useState([]);
+
     const [songs, setSongs] = useState([]);
     const [songplay, setSongplay] = useState(null);
     const [, setSongId] = useSongId();
@@ -17,19 +19,14 @@ export default function SongList() {
     const [songsBXH1, setSongsBXH1] = useState([]);
     const [currentPlayingId, setCurrentPlayingId] = useState(null);
 
-
-   
-    
-    const lyrics = [
-        { time: 0, text: "Nếu em nói mình xa nhau" },
-        { time: 5, text: "Người ta sẽ không còn thấy nhau nữa" },
-        { time: 10, text: "Và chúng ta sẽ mất nhau thật sao?" },
-        // Thêm các dòng lời bài hát khác với thời gian tương ứng
-    ];
-
     console.log(aID);
  
-
+    useEffect(() => {
+        fetch(`http://localhost:9999/artist`)
+            .then(res => res.json())
+            .then(data => setArtists(data))
+            .catch(e => console.log(e));
+    }, []);
     useEffect(() => {
         fetch(`http://localhost:9999/albums`)
             .then(res => res.json())
@@ -57,7 +54,10 @@ export default function SongList() {
         setCurrentPlayingId(id);
         handleSongClick(id);
     };
-
+    const getArtistName = (artistID) => {
+        const artist = artists.find(a => a.id === artistID);
+        return artist ? artist.name : 'Unknown Artist';
+    };
     const handleSongClick = (id) => {
         const selectedSong = songs.find(song => song.id === id);
         if (selectedSong) {
@@ -80,7 +80,7 @@ export default function SongList() {
                     {songs.map((s, index) => (
                         <Row key={s.id} style={{ border: "1px solid black", marginTop: "10px" }}>
                             <Col>
-                                <p onClick={() => onSongClick(s.id)}>{currentPlayingId === s.id && <i className="bi bi-play-fill play-icon" style={{ padding: "5px" }}></i>}{index + 1}. {s.title} - {s.artist}
+                                <p onClick={() => onSongClick(s.id)}>{currentPlayingId === s.id && <i className="bi bi-play-fill play-icon" style={{ padding: "5px" }}></i>}{index + 1}. {s.title} - {getArtistName(s.artistID)}
                                 </p>
                             </Col>
                             <Col><p><i className="bi bi-heart" style={{ padding: "5px" }}></i> Thêm Vào
@@ -99,7 +99,7 @@ export default function SongList() {
                             </Row>
                             <Row>
                                 <Col>
-                                    <p style={{ fontSize: '1.2rem' }}><strong>Nhạc sĩ:</strong> {songplay.artist}</p>
+                                    <p style={{ fontSize: '1.2rem' }}><strong>Nhạc sĩ:</strong>  {getArtistName(songplay.artistID)}</p>
                                 </Col>
                             </Row>
                             <Row>
@@ -122,21 +122,16 @@ export default function SongList() {
                                     <i className="bi bi-phone-vibrate" style={{ padding: "5px" }}></i> Nhạc Chờ
                                 </Col>
                             </Row>
-                        </>
-                    )}
+                       
+                  
                     <Row style={{ border: '1px solid', marginTop: "20px" }}>
-                        <h3> Lời bài hát: Em Gì Ơi</h3>
-                        <p>Nhạc sĩ : ICM, Jack</p>
+                        <h3> Lời bài hát: {songplay.title}</h3>
+                        <p>Ca sĩ :  {getArtistName(songplay.artistID)}</p>
                         <p>[Verse:]</p>
-                        <p>Đừng khóc như thế xin đừng khóc như thế</p>
-                        <p>Bao nhiêu niềm đau chôn giấu mong ngày sẽ trôi mau</p>
-                        <p>Đời phong ba độc thân bước chân sơn hà</p>
-                        <p>Buổi sáng hôm ấy khi còn trắng sương mây</p>
-                        <p>Ta như là gió phiêu lãng mang hành lý thương nhớ</p>
-                        <p>Chẳng sao đâu sầu mi có khi còn lâu</p>
-                        <p>[Pre chorus:]</p>
-                        <a href=''>Xem toàn bộ</a>
+                        <pre>{songplay.lyrics}</pre>
                     </Row>
+                    </>
+                      )}
                     <Row style={{ lineHeight: "50px", marginTop: "20px" }}>
                         <Col md={3}><h1>Album</h1></Col>
                     </Row>
@@ -147,7 +142,7 @@ export default function SongList() {
                                 <Card className="mb-4 album-card">
                                     <Link to={`/songlist/${album.id}`}><Card.Img variant="top" src={album.cover} className="album-card-img" /></Link>
                                     <Card.Body>
-                                <Link to={`/songlist/${album.id}`}><Card.Img variant="top" src={album.cover} className="album-card-img" /></Link>                                     <Card.Body>
+                                <Link to={`/songlist/${album.id}`}><Card.Img variant="top" src={album.cover} className="album-card-img" /></Link>                                  
                                         <Card.Title className="album-card-title">{album.title}</Card.Title>
                                     </Card.Body>
                                 </Card>
