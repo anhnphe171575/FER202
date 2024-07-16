@@ -12,6 +12,12 @@ import Profile from './Profile/Profile';
 import ManageTable from './Admin/Manage';
 import AddSong from './Admin/AddSong';
 import EditSong from './Admin/EditSong';
+import PlaylistAddForm from './Playlist/addPlayList';
+import PlaylistUpdateForm from './Playlist/editPlayList';
+import Admin from './Admin/Admin';
+import ManageAlbums from './Admin/ManageAlbum';
+import ManageTable from './Admin/Manage';
+import ManageArtists from './Admin/ManageArtist';
 
 function App() {
     return (
@@ -29,6 +35,13 @@ function App() {
                     <Route path='/admin' element={<ManageTable />} />
                     <Route path='/addsong' element={<AddSong />} />
                     <Route path='/edit/:eId' element={<EditSong />} />
+                    <Route path='/userprofile/:uID'element={<Profile></Profile>} />
+                    <Route path='/addPlaylist' element={<PlaylistAddForm/>}/>
+                    <Route path='/editplaylist/:pID' element={<PlaylistUpdateForm/>}/>
+                    <Route path='/Admin' element={<Admin/>}/>
+                    <Route path='/ManageAlbum' element={<ManageAlbums/>}/>
+                    <Route path='/ManageSong' element={<ManageTable/>}/>
+                    <Route path='/ManageArtist' element={<ManageArtists/>}/>
                 </Routes>
             <MusicPlayer></MusicPlayer>
         </BrowserRouter>

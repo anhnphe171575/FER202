@@ -102,42 +102,71 @@
       "name": "Classical"
     }
   ],
+  "playlist": [
+    {
+      "id": "6953",
+      "title": "aaa",
+      "userid": "1",
+      "img": {},
+      "description": "aaa",
+      "trackid": [
+        "1"
+      ]
+    },
+    {
+      "title": "aaa1",
+      "userid": "9a78",
+      "img": {},
+      "description": "bbb",
+      "trackid": [
+        "3"
+      ],
+      "id": "121c"
+    },
+    {
+      "title": "aaa11",
+      "userid": "9a78",
+      "img": {},
+      "description": "aaa",
+      "trackid": [
+        "3"
+      ],
+      "id": "9305"
+    }
+  ],
+  "like": [],
   "users": [
     {
       "id": "1",
       "fullName": "John Doe",
       "email": "john.doe@example.com",
-      "password": "password123"
+      "password": "password123",
+      "Gender": "Male",
+      "RoleId": "1"
     },
     {
       "id": "2",
       "fullName": "Jane Smith",
       "email": "jane.smith@example.com",
-      "password": "securepassword"
+      "password": "securepassword",
+      "Gender": "Male",
+      "RoleId": "2"
     },
     {
       "id": "3",
       "fullName": "Alice Johnson",
       "email": "alice.johnson@example.com",
-      "password": "mypassword"
+      "password": "mypassword",
+      "Gender": "Male",
+      "RoleId": "2"
     },
     {
       "id": "9a78",
       "fullName": "Nguyễn Phú Anh",
       "email": "phuanhpro11@gmail.com",
-      "password": "123"
-    },
-    {
-      "id": "5a82",
-      "fullName": "Nguyễn Phú Anh",
-      "email": "phuanhpro11@gmail.com",
-      "password": "123"
-    },
-    {
-      "id": "2972",
-      "fullName": "",
-      "email": "",
-      "password": ""
+      "password": "123",
+      "Gender": "Female",
+      "RoleId": "2"
     }
   ],
   "listsongs": [
@@ -168,6 +197,9 @@
       "title": "Sài Gòn Đau Lòng Quá",
       "imgSrc": "/images/image1.jpg",
       "src": "/music/SaiGonDauLongQua-HuaKimTuyenHoangDuyen-6992977.mp3",
+      "title": "Tên Bài Hát 2",
+      "imgSrc": "/images/image1.jpg",
+      "src": "/music/song2.mp3",
       "artist": "Artist 2",
       "plays": 54321,
       "categoryId": 1,
@@ -305,6 +337,7 @@
       "ranking": 15
     },
     {
+
       "title": "phuanh 13",
       "imgSrc": "aaaaasdaa",
       "src": "/music/song15.mp3",
@@ -374,6 +407,136 @@
       "plays": "1211",
       "categoryId": 1,
       "id": "a302"
+      "id": "16",
+      "title": "Tên Bài Hát 15",
+      "imgSrc": "/images/image4.jpg",
+      "src": "/music/song15.mp3",
+      "artist": "Artist 15",
+      "categoryId": 4,
+      "plays": 345678,
+      "ranking": 16
+    }
+  ],
+  "artist": [
+    {
+      "id": "1",
+      "name": "Sơn Tùng M-TP",
+      "cateId": "1",
+      "Gender": "Male",
+      "dob": "1997-01-01"
+    },
+    {
+      "id": "2",
+      "name": "Lou Hoàng",
+      "cateId": "2",
+      "Gender": "Male",
+      "dob": "2006-06-10"
+    },
+    {
+      "id": "3",
+      "name": "Artist 2",
+      "cateId": "1",
+      "Gender": "Male",
+      "dob": "1992"
+    },
+    {
+      "id": "4",
+      "name": "Artist 3",
+      "cateId": "1",
+      "Gender": "Female",
+      "dob": "1995"
+    },
+    {
+      "id": "5",
+      "name": "Artist 4",
+      "cateId": "2",
+      "Gender": "Male",
+      "dob": "1990"
+    },
+    {
+      "id": "6",
+      "name": "Artist 5",
+      "cateId": "2",
+      "Gender": "Female",
+      "dob": "1988"
+    },
+    {
+      "id": "7",
+      "name": "Artist 6",
+      "cateId": "2",
+      "Gender": "Male",
+      "dob": "1985"
+    },
+    {
+      "id": "8",
+      "name": "Artist 7",
+      "cateId": "2",
+      "Gender": "Female",
+      "dob": "1991"
+    },
+    {
+      "id": "9",
+      "name": "Artist 8",
+      "cateId": "3",
+      "Gender": "Male",
+      "dob": "1987"
+    },
+    {
+      "id": "10",
+      "name": "Artist 9",
+      "cateId": "3",
+      "Gender": "Female",
+      "dob": "1989"
+    },
+    {
+      "id": "11",
+      "name": "Artist 10",
+      "cateId": "3",
+      "Gender": "Male",
+      "dob": "1993"
+    },
+    {
+      "id": "12",
+      "name": "Artist 11",
+      "cateId": "3",
+      "Gender": "Female",
+      "dob": "1996"
+    },
+    {
+      "id": "13",
+      "name": "Artist 12",
+      "cateId": "4",
+      "Gender": "Male",
+      "dob": "1984"
+    },
+    {
+      "id": "14",
+      "name": "Artist 13",
+      "cateId": "4",
+      "Gender": "Female",
+      "dob": "1990"
+    },
+    {
+      "id": "15",
+      "name": "Artist 14",
+      "cateId": "4",
+      "Gender": "Male",
+      "dob": "1986"
+    },
+    {
+      "id": "16",
+      "name": "Artist 15",
+      "cateId": "4",
+      "Gender": "Female",
+      "dob": "1990"
+    },
+    {
+      "id": "17",
+      "name": "gssđ",
+      "cateId": "2",
+      "Gender": "Male",
+      "dob": "2024-07-11"
+
     }
   ]
 }

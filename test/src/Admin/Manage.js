@@ -50,6 +50,7 @@ const ManageTable = () => {
   return (
     <div>
       <HeaderAdmin setSearch={setSearch}></HeaderAdmin>
+      <Row><HeaderAdmin/></Row>
       <Row>
         <Col md={10}>
           <h1>Manage</h1>

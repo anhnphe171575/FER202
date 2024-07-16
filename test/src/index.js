@@ -24,6 +24,10 @@ import Profile from './Profile/Profile';
 import HeaderAdmin from './Admin/Header';
 import { BrowserRouter } from 'react-router-dom';
 
+import PlaylistUpdateForm from './Playlist/addPlayList';
+import ManageArtists from './Admin/ManageArtist';
+import ManageAlbums from './Admin/ManageAlbum';
+
 
 
 
@@ -76,6 +80,9 @@ root.render(
   <React.StrictMode>
     <App></App>  
     
+    {/* <PlaylistUpdateForm>  </PlaylistUpdateForm> */}
+    {/* <ManageArtists/> */}
+    {/* <ManageAlbums/> */}
   </React.StrictMode>
 );
 

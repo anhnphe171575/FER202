@@ -3,6 +3,7 @@ import { Button, Container, Form, Nav, Navbar, Col, Row, Image, Carousel, NavDro
 import { Link } from 'react-router-dom'; 
 
 import './Header.css';
+import Carousel1 from './Carousel';
 
 export default function Headerhomepage() {
     const [user, setUser] = useState(null);
@@ -22,6 +23,7 @@ export default function Headerhomepage() {
     }, []);
     const handleRemove =() =>{
        sessionStorage.removeItem("user")
+       setUser(null);
        window.location.reload();
     }
     return (
@@ -41,6 +43,13 @@ export default function Headerhomepage() {
                                 <Nav.Link as={Link} to="/BXH" className="me-3">BXH</Nav.Link>
                                 <Nav.Link href="#action3" className="me-3">PlayList</Nav.Link>
                                 <Nav.Link as={Link} to="/Album" className="me-3">Album</Nav.Link>
+                                {user && user.RoleId === "1" && (
+                                    <>
+                                        <Nav.Link as={Link} to="/ManageAlbum" className="me-3">ManageAlbums</Nav.Link>
+                                        <Nav.Link as={Link} to="/ManageSong" className="me-3">ManageSongs</Nav.Link>
+                                        <Nav.Link as={Link} to="/ManageArtist" className="me-3">ManageArtists</Nav.Link>
+                                    </>
+                                )}
                             </Nav>
                             <Form className="d-flex me-2">
                                 <InputGroup>
@@ -65,6 +74,7 @@ export default function Headerhomepage() {
                                   <Dropdown.Item >
                                    <Link to={`/profile/${user.id}`}>Trang Cá Nhân</Link>
                                     </Dropdown.Item>
+                                  <Dropdown.Item as={Link} to={`/userprofile/${user.id}`}>Trang Cá Nhân</Dropdown.Item>
                                   <Dropdown.Item onClick={handleRemove}>Đăng Xuất</Dropdown.Item>
                                 </Dropdown.Menu>
                               </Dropdown>
@@ -84,28 +94,7 @@ export default function Headerhomepage() {
                     </Container>
                 </Navbar>
             </Row>
-            <Row>
-                <Carousel>
-                    <Carousel.Item>
-                        <Image src="/image/image1.jpg" className='carousel-image'></Image>
-                        <Carousel.Caption>
-
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <Image src="/image/image2.jpg" className='carousel-image'></Image>
-                        <Carousel.Caption>
-
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <Image src="/image/image3.jpg" className='carousel-image'></Image>
-                        <Carousel.Caption>
-
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                </Carousel>
-            </Row>
+            
         </Container>
     );
 }
