@@ -1,12 +1,16 @@
+import { useState } from 'react';
 import { Button, Container, Form, Nav, Navbar, Col, Row, Image, InputGroup } from 'react-bootstrap'
 
-export default function Header() {
+export default function HeaderAdmin({ setSearch }) {
+
     return (
         <Container>
             <Row>
                 <Navbar expand="lg" className="bg-body-tertiary">
                     <Container fluid>
-                        <Navbar.Brand href="#"><Image  style={{width:'20%', marginRight:'5px'}}  src="./image/icondavid.png"></Image>David Music</Navbar.Brand>
+                        <Navbar.Brand href="#"><span className="admin-span">
+                            Admin
+                        </span></Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
                             <Nav
@@ -26,6 +30,7 @@ export default function Header() {
                                         placeholder="Search"
                                         aria-label="Search"
                                         aria-describedby="basic-addon1"
+                                        onChange={e => setSearch(e.target.value)}
                                     />
                                     <InputGroup.Text id="basic-addon1">
                                         <i className="bi bi-search"></i>
@@ -38,7 +43,7 @@ export default function Header() {
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
-            </Row>          
+            </Row>
         </Container>
     );
 }

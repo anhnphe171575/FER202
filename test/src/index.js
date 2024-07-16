@@ -21,6 +21,8 @@ import App from './App'
 import ManageTable from './Admin/Manage';
 import { Container } from 'react-bootstrap';
 import Profile from './Profile/Profile';
+import HeaderAdmin from './Admin/Header';
+import { BrowserRouter } from 'react-router-dom';
 
 
 
@@ -72,12 +74,8 @@ const playlist = [
 
 root.render(
   <React.StrictMode>
-    {/* <App></App>   */}
-    <Container>
-    <Header></Header>
-    {/* <ManageTable/> */}
-    <Profile/>
-    </Container>
+    <App></App>  
+    
   </React.StrictMode>
 );
 

@@ -24,11 +24,11 @@ export default function SongDetail() {
         { time: 10, text: "Và chúng ta sẽ mất nhau thật sao?" },
         // Thêm các dòng lời bài hát khác với thời gian tương ứng
     ];
+    console.log(sID);
 
     useEffect(()=> {
         setSongId(sID);
     }, [sID])
-
     useEffect(() => {
         fetch(`http://localhost:9999/albums`)
             .then(res => res.json())

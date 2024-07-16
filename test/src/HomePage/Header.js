@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button, Container, Form, Nav, Navbar, Col, Row, Image, Carousel, NavDropdown, InputGroup, Dropdown  } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
 
 import './Header.css';
 
@@ -62,7 +62,9 @@ export default function Headerhomepage() {
                                 {user.fullName}
                                 </Dropdown.Toggle>                         
                                 <Dropdown.Menu>
-                                  <Dropdown.Item href="#/action-1">Trang Cá Nhân</Dropdown.Item>
+                                  <Dropdown.Item >
+                                   <Link to={`/profile/${user.id}`}>Trang Cá Nhân</Link>
+                                    </Dropdown.Item>
                                   <Dropdown.Item onClick={handleRemove}>Đăng Xuất</Dropdown.Item>
                                 </Dropdown.Menu>
                               </Dropdown>
