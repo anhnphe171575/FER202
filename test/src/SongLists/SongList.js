@@ -143,6 +143,7 @@ export default function SongList() {
                                     <Link to={`/songlist/${album.id}`}><Card.Img variant="top" src={album.cover} className="album-card-img" /></Link>
                                     <Card.Body>
                                 <Link to={`/songlist/${album.id}`}><Card.Img variant="top" src={album.cover} className="album-card-img" /></Link>                                  
+
                                         <Card.Title className="album-card-title">{album.title}</Card.Title>
                                     </Card.Body>
                                 </Card>

@@ -41,7 +41,7 @@ export default function Headerhomepage() {
                             >
                                 <Nav.Link as={Link} to="/Home" className="me-3">Home</Nav.Link>
                                 <Nav.Link as={Link} to="/BXH" className="me-3">BXH</Nav.Link>
-                                <Nav.Link href="#action3" className="me-3">PlayList</Nav.Link>
+                                <Nav.Link href="playList" className="me-3">PlayList</Nav.Link>
                                 <Nav.Link as={Link} to="/Album" className="me-3">Album</Nav.Link>
                                 {user && user.RoleId === "1" && (
                                     <>

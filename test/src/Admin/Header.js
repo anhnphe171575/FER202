@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 export default function HeaderAdmin() {
     const [user, setUser] = useState(null);
     const [search, setSearch] = useState("");
+
     useEffect(() => {
         const storedUser = sessionStorage.getItem("user");
 
@@ -25,12 +26,10 @@ export default function HeaderAdmin() {
        window.location.href = "/Home"
     }
     return (
-        <Container>
             <Row>
                 <Navbar expand="lg" className="bg-body-tertiary">
                     <Container fluid>
-=                        <Navbar.Brand href="#"><span className="admin-span">
-                            Admin
+                      <Navbar.Brand href="#"><span className="admin-span">
                         </span></Navbar.Brand>
                         <Navbar.Brand as={Link} to="/Home"><Image style={{ width: '20%', marginRight: '5px' }} src="/image/icondavid.png"></Image>David Music</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -40,27 +39,13 @@ export default function HeaderAdmin() {
                                 style={{ maxHeight: '100px' }}
                                 navbarScroll
                             >
-                                <Nav.Link as={Link} to="/Home" className="me-3">Home</Nav.Link>
-                                <Nav.Link as={Link} to="/BXH" className="me-3">BXH</Nav.Link>
-                                <Nav.Link href="#action3" className="me-3">PlayList</Nav.Link>
-                                <Nav.Link as={Link} to="/Album" className="me-3">Album</Nav.Link>
+                               
                                 <Nav.Link as={Link} to="/ManageAlbum" className="me-3">ManageAlbums</Nav.Link>
-                                <Nav.Link as={Link} to="/MangageSong" className="me-3">ManageSongs</Nav.Link>
+                                <Nav.Link as={Link} to="/Admin" className="me-3">ManageSongs</Nav.Link>
                                 <Nav.Link as={Link} to="/ManageArtist" className="me-3">ManageArtists</Nav.Link>
                             </Nav>
                             <Form className="d-flex me-2"/>
-                                <InputGroup>
-                                    <Form.Control
-                                        type="search"
-                                        placeholder="Search"
-                                        aria-label="Search"
-                                        aria-describedby="basic-addon1"
-                                        onChange={e => setSearch(e.target.value)}
-                                    />
-                                    <InputGroup.Text id="basic-addon1">
-                                        <i className="bi bi-search"></i>
-                                    </InputGroup.Text>
-                                </InputGroup>
+                               
 
                     
                             {user ? (
@@ -90,6 +75,5 @@ export default function HeaderAdmin() {
                 </Navbar>
             </Row>
 
-        </Container>
     );
 }
