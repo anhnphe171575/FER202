@@ -107,7 +107,7 @@
       "id": "6953",
       "title": "aaa",
       "userid": "1",
-      "img": {},
+      "img":"/images/ngaydeptroidenoichiatay.jpg",
       "description": "aaa",
       "trackid": [
         "1"
@@ -116,7 +116,7 @@
     {
       "title": "aaa1",
       "userid": "9a78",
-      "img": {},
+      "img": "/images/1490321288901_600.jpg",
       "description": "bbb",
       "trackid": [
         "3"
@@ -126,7 +126,7 @@
     {
       "title": "aaa11",
       "userid": "9a78",
-      "img": {},
+      "img": "/images/quangle1.jpg",
       "description": "aaa",
       "trackid": [
         "3"
@@ -336,29 +336,7 @@
       "plays": 234567,
       "ranking": 15
     },
-    {
-
-      "title": "phuanh 13",
-      "imgSrc": "aaaaasdaa",
-      "src": "/music/song15.mp3",
-      "artist": "ving nguyen",
-      "plays": "01212",
-      "ranking": "10",
-      "AlbumID": "8",
-      "categoryId": "4",
-      "id": "16"
-    },
-    {
-      "title": "quynh",
-      "imgSrc": "aaa",
-      "src": "vinh",
-      "artist": "cinh",
-      "plays": "1222",
-      "ranking": 1,
-      "AlbumID": "8",
-      "categoryId": "4",
-      "id": "862c"
-    },
+    
     {
       "id": "66b3",
       "title": "Hay trao cho anh",
@@ -399,22 +377,6 @@
       "AlbumID": "8",
       "categoryId": "2",
       "id": "1d4b"
-    },
-    {
-      "title": "ads",
-      "imgSrc": "/images/image4.jpg",
-      "src": "a",
-      "plays": "1211",
-      "categoryId": 1,
-      "id": "a302"
-      "id": "16",
-      "title": "Tên Bài Hát 15",
-      "imgSrc": "/images/image4.jpg",
-      "src": "/music/song15.mp3",
-      "artist": "Artist 15",
-      "categoryId": 4,
-      "plays": 345678,
-      "ranking": 16
     }
   ],
   "artist": [
