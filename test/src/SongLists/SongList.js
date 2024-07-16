@@ -146,7 +146,6 @@ export default function SongList() {
                             <Col md={3} key={idx} >
                                 <Card className="mb-4 album-card">
                                     <Link to={`/songlist/${album.id}`}><Card.Img variant="top" src={album.cover} className="album-card-img" /></Link>
-                                    <Card.Body>
                                 <Link to={`/songlist/${album.id}`}><Card.Img variant="top" src={album.cover} className="album-card-img" /></Link>                                     <Card.Body>
                                         <Card.Title className="album-card-title">{album.title}</Card.Title>
                                     </Card.Body>

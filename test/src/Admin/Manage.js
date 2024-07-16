@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Button, Row, Col } from 'react-bootstrap';
+import { Button, Container, Form, Nav, Navbar, Col, Row, Image, Carousel, NavDropdown, InputGroup, Dropdown, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import HeaderAdmin from './Header';
 
@@ -48,12 +48,25 @@ const ManageTable = () => {
   };
 
   return (
-    <div>
-      <HeaderAdmin setSearch={setSearch}></HeaderAdmin>
-      <Row><HeaderAdmin/></Row>
+    <Container>
+      <HeaderAdmin ></HeaderAdmin>
       <Row>
-        <Col md={10}>
+        <Col md={8}>
           <h1>Manage</h1>
+        </Col>
+        <Col md={3}>
+          <InputGroup>
+            <Form.Control
+              type="search"
+              placeholder="Search by name"
+              aria-label="Search"
+              aria-describedby="basic-addon1"
+              onChange={e => setSearch(e.target.value)}
+            />
+            <InputGroup.Text id="basic-addon1">
+              <i className="bi bi-search"></i>
+            </InputGroup.Text>
+          </InputGroup>
         </Col>
         <Col>
           <Link to={"/addsong"} className="btn btn-primary mb-3">
@@ -67,8 +80,8 @@ const ManageTable = () => {
           <h4>Categories</h4>
           {categories.map(category => (
             <Row>
-              <input type="radio" id={category.id} name="category" value={category.id} />
-              <label>{category.name}</label>
+              
+              <label>{category.name}   <input type="radio" id={category.id} name="category" value={category.id} /></label>
             </Row>
           ))}
         </Col>
@@ -109,7 +122,7 @@ const ManageTable = () => {
         </Col>
       </Row>
 
-    </div>
+    </Container>
   );
 };
 

@@ -16,8 +16,9 @@ import PlaylistAddForm from './Playlist/addPlayList';
 import PlaylistUpdateForm from './Playlist/editPlayList';
 import Admin from './Admin/Admin';
 import ManageAlbums from './Admin/ManageAlbum';
-import ManageTable from './Admin/Manage';
 import ManageArtists from './Admin/ManageArtist';
+import PlaylistComponent from './Playlist/Playlist';
+import PlaylistDetail from './Playlist/PlaylistDetail';
 
 function App() {
     return (
@@ -42,6 +43,9 @@ function App() {
                     <Route path='/ManageAlbum' element={<ManageAlbums/>}/>
                     <Route path='/ManageSong' element={<ManageTable/>}/>
                     <Route path='/ManageArtist' element={<ManageArtists/>}/>
+                    <Route path='/playList' element={<PlaylistComponent/>}/>
+                    <Route path='/playListDetail/:pid' element={<PlaylistDetail/>}/>
+
                 </Routes>
             <MusicPlayer></MusicPlayer>
         </BrowserRouter>
