@@ -31,7 +31,7 @@ export default function HomePage() {
             <Container style={{ marginTop:"50px"}}>
             <Row>
               <Col md={9}>
-            <Main categories={categories} />
+            <Main/>
 
             </Col>
             <Col md={3}>

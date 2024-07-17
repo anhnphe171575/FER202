@@ -338,18 +338,6 @@
       "categoryId": 4,
       "plays": 234567,
       "ranking": 15
-    },
-    {
-      "id": "c53c",
-      "title": "ti",
-      "imgSrc": "img",
-      "src": "src",
-      "artistID": "7",
-      "plays": "1",
-      "ranking": 1,
-      "AlbumID": 1,
-      "lyrics": "lyric",
-      "categoryId": 1
     }
   ],
   "artist": [

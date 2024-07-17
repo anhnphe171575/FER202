@@ -118,7 +118,7 @@ export default function Profile() {
             <Col md={8}>
               <CardGroup>
                 <Card>
-                  <Card.Img variant="top" src={pl.img} style={{width:"100px"}}/>
+                  <Card.Img variant="top" src={pl.img} style={{width:"100"}}/>
                   <Card.Body>
                     <Card.Title>{pl.title}</Card.Title>
                     <Button variant="warning" onClick={() => handleEditPlaylist(pl.id)} style={{paddingLeft:"10px"}}>Chỉnh sửa</Button>
