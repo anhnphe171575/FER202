@@ -7,34 +7,41 @@ export default function AddSong() {
     const [title, setTitle] = useState("");
     const [img, setImg] = useState("");
     const [src, setSrc] = useState("");
-    const [artist, setArtist] = useState();
+    const [artistId, setArtistId] = useState();
     const [plays, setPlay] = useState(0);
     const [categoryId, setCatId] = useState("0");
     const [ranking, setRank] = useState(1);
     const [albumId, setAlbumId] = useState(1);
     const [categories, setCategories] = useState([]);
     const [album, setAlbum] = useState([]);
+    const [lyrics, setLyrics] = useState([]);
+    const [artist, setArtist] = useState([]);
 
     useEffect(() => {
         fetch(`http://localhost:9999/listsongs`)
-        .then(res=>res.json())
-        .then(data=>{
-            setSong(data.id)
-            setTitle(data.title)
-            setImg(data.img)
-            setSrc(data.src)
-            setArtist(data.artist)
-            setPlay(data.plays)
-            setCatId(data.categoryId)
-            setRank(data.ranking)
-            setAlbumId(data.AlbumID)
-        })
-        .catch(e => console.log(e))
-        
+            .then(res => res.json())
+            .then(data => {
+                setSong(data.id)
+                setTitle(data.title)
+                setImg(data.img)
+                setSrc(data.src)
+                setArtistId(data.artistID)
+                setPlay(data.plays)
+                setCatId(data.categoryId)
+                setRank(data.ranking)
+                setAlbumId(data.AlbumID)
+                setLyrics(data.lyrics)
+            })
+            .catch(e => console.log(e))
+
 
         fetch("http://localhost:9999/categories")
             .then(res => res.json())
             .then(result => setCategories(result))
+            .catch(error => console.log(error));
+        fetch("http://localhost:9999/artist")
+            .then(res => res.json())
+            .then(result => setArtist(result))
             .catch(error => console.log(error));
 
         fetch("http://localhost:9999/albums")
@@ -43,7 +50,7 @@ export default function AddSong() {
 
     }, [])
 
-    function handleCreate(e){
+    function handleCreate(e) {
         e.preventDefault();
         let message = "";
         let status = true;
@@ -54,17 +61,18 @@ export default function AddSong() {
         if (categoryId === 0) {
             message += "You must choose a category!";
             status = false;
-        }if (status === false || message.length > 0) {
+        } if (status === false || message.length > 0) {
             alert(message);
         } else {
             const newSong = {
-                title:title,
+                title: title,
                 imgSrc: img,
                 src: src,
-                artist: artist,
-                plays:plays,
-                ranking:ranking,
-                AlbumID:albumId,
+                artistID: artistId,
+                plays: plays,
+                ranking: ranking,
+                AlbumID: albumId,
+                lyrics: lyrics,
                 categoryId: categoryId,
 
             };
@@ -109,15 +117,25 @@ export default function AddSong() {
                     </FormGroup>
                     <FormGroup>
                         <FormLabel>Image</FormLabel>
-                        <FormControl value={'/images/'} onChange={e => setImg(e.target.value)}/>
+                        <FormControl onChange={e => setImg(e.target.value)} />
                     </FormGroup>
                     <FormGroup>
                         <FormLabel>Src Music</FormLabel>
-                        <FormControl value={'/music/'} onChange={e => setSrc(e.target.value)} />
+                        <FormControl  onChange={e => setSrc(e.target.value)} />
+                    </FormGroup>
+                    <FormGroup>
+                        <FormLabel>Lyrics</FormLabel>
+                        <FormControl onChange={e => setLyrics(e.target.value)} />
                     </FormGroup>
                     <FormGroup>
                         <FormLabel>Artist</FormLabel>
-                        <FormControl onChange={e => setArtist(e.target.value)}></FormControl>
+                        <FormSelect onChange={e => setArtistId(parseInt(e.target.value))}>
+                            <option value="0">-- Select a artist --</option>
+                            {artist?.map(c => (
+                                <option value={c.id} key={c.id}>{c.name}</option>
+                            ))
+                            }
+                        </FormSelect>
                     </FormGroup>
                     <FormGroup>
                         <FormLabel>Play</FormLabel>
@@ -146,8 +164,8 @@ export default function AddSong() {
                             ))
                             }
                         </FormSelect>
-                        </FormGroup>
-                        <Form.Group className="mb-3">
+                    </FormGroup>
+                    <Form.Group className="mb-3">
                         <Button onClick={handleCreate}>Create</Button>
                     </Form.Group>
                 </Col>

@@ -19,6 +19,7 @@ import ManageAlbums from './Admin/ManageAlbum';
 import ManageArtists from './Admin/ManageArtist';
 import PlaylistComponent from './Playlist/Playlist';
 import PlaylistDetail from './Playlist/PlaylistDetail';
+import SongDetailad from './Admin/SongDetail';
 
 function App() {
     return (
@@ -45,6 +46,8 @@ function App() {
                     <Route path='/ManageArtist' element={<ManageArtists/>}/>
                     <Route path='/playList' element={<PlaylistComponent/>}/>
                     <Route path='/playListDetail/:pid' element={<PlaylistDetail/>}/>
+                    <Route path="/listsongs/:id" element={<SongDetailad/>} />
+
 
                 </Routes>
             <MusicPlayer></MusicPlayer>

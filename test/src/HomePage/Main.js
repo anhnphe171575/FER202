@@ -8,12 +8,14 @@ export default function Main({ categories }) {
       <Row>
         {category.songs.map((song, index) => (
           <Col key={index} xs={3}>
-            <Card>
-              <Card.Img variant="top" src={song.imgSrc} />
-              <Card.Body>
-                <Card.Title><Link to={`/song/${song.id}`}>{song.title}</Link></Card.Title>
-              </Card.Body>
-            </Card>
+             <Card >
+      <Card.Img style={{ width: '200px' }} variant="top" src={song.imgSrc} />
+      <Card.Body>
+        <Card.Title>
+          <Link to={`/song/${song.id}`}>{song.title}</Link>
+        </Card.Title>
+      </Card.Body>
+    </Card>
           </Col>
         ))}
       </Row>
