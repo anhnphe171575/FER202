@@ -71,9 +71,7 @@ export default function Headerhomepage() {
                                 {user.fullName}
                                 </Dropdown.Toggle>                         
                                 <Dropdown.Menu>
-                                  <Dropdown.Item >
-                                   <Link to={`/profile/${user.id}`}>Trang Cá Nhân</Link>
-                                    </Dropdown.Item>
+                                 
                                   <Dropdown.Item as={Link} to={`/userprofile/${user.id}`}>Trang Cá Nhân</Dropdown.Item>
                                   <Dropdown.Item onClick={handleRemove}>Đăng Xuất</Dropdown.Item>
                                 </Dropdown.Menu>

@@ -17,13 +17,13 @@ export default function SongDetail() {
     const { sID } = useParams();
     const [albums, setAlbums] = useState([]);
     const [songsBXH1, setSongsBXH1] = useState([]);
-
-    const lyrics = [
-        { time: 0, text: "Nếu em nói mình xa nhau" },
-        { time: 5, text: "Người ta sẽ không còn thấy nhau nữa" },
-        { time: 10, text: "Và chúng ta sẽ mất nhau thật sao?" },
-        // Thêm các dòng lời bài hát khác với thời gian tương ứng
-    ];
+    const [artists, setArtists] = useState([]);
+    useEffect(() => {
+        fetch(`http://localhost:9999/artist`)
+            .then(res => res.json())
+            .then(data => setArtists(data))
+            .catch(e => console.log(e));
+    }, []);
     console.log(sID);
 
     useEffect(()=> {
@@ -57,7 +57,10 @@ export default function SongDetail() {
             })
             .catch(error => console.error('Error fetching and filtering songs:', error));
     }, []);
-      
+    const getArtistName = (artistID) => {
+        const artist = artists.find(a => a.id === artistID);
+        return artist ? artist.name : 'Unknown Artist';
+    };
     return (
         <Container>
             <Row>
@@ -72,7 +75,7 @@ export default function SongDetail() {
                     </Row>
                     <Row>
                         <Col>
-                            <p style={{ fontSize: '1.2rem' }}><strong>Nhạc sĩ:</strong>{song.artist}</p>
+                            <p style={{ fontSize: '1.2rem' }}><strong>Ca sĩ:</strong>{getArtistName(song.artistID)}</p>
                         </Col>
                     </Row>
                     <Row>
@@ -96,17 +99,10 @@ export default function SongDetail() {
                         </Col>
                     </Row>
                     <Row style={{ border: '1px solid', marginTop: "20px" }}>
-                        <h3> Lời bài hát: Em Gì Ơi</h3>
-                        <p>Nhạc sĩ : ICM,jack</p>
+                        <h3> Lời bài hát: {song.title} </h3>
+                        <p> {song.artist} </p>
                         <p>[Verse:]</p>
-                        <p>Đừng khóc như thế xin đừng khóc như thế</p>
-                        <p>Bao nhiêu niềm đau chôn giấu mong ngày sẽ trôi mau</p>
-                        <p>Đời phong ba độc thân bước chân sơn hà</p>
-                        <p>Buổi sáng hôm ấy khi còn trắng sương mây</p>
-                        <p>Ta như là gió phiêu lãng mang hành lý thương nhớ</p>
-                        <p>Chẳng sao đâu sầu mi có khi còn lâu</p>
-                        <p>[Pre chorus:]</p>
-                        <a href=''>Xem toàn bộ</a>
+                        <pre>{song.lyrics}</pre>
                     </Row>
                     <Row style={{ lineHeight: "50px", marginTop: "20px" }}>
                         <Col md={3}><h1>Album</h1></Col>

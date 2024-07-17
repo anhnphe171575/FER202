@@ -20,8 +20,6 @@ export default function Album() {
       </Row>
       <Row style={{ lineHeight: "50px" }}>
         <Col md={3}><h1>Album</h1></Col>
-        <Col md={2}>Mới nhất</Col>
-        <Col md={2}>Nghe nhiều</Col>
       </Row>
       <hr />
       <Row>

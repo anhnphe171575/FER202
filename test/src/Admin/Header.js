@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Button, Container, Form, Nav, Navbar, Col, Row, Image, Carousel, NavDropdown, InputGroup, Dropdown  } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -5,8 +6,7 @@ import { Link } from 'react-router-dom';
 
 export default function HeaderAdmin() {
     const [user, setUser] = useState(null);
-
-    
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         const storedUser = sessionStorage.getItem("user");

@@ -4,23 +4,15 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import './Playlist.css';
 import Headerhomepage from '../HomePage/Header';
 
-const PlaylistComponent = () => {
-  const [playlist, setPlaylist] = useState([]);
-
-  useEffect(() => {
-    fetch(`http://localhost:9999/playlist`)
-      .then(res => res.json())
-      .then(data => setPlaylist(data))
-      .catch(e => console.log(e));
-  }, []);
-
-  return (
-    <Container>
-      <Headerhomepage />
+    const PlaylistComponent = () => {   
+      
+    return (
+      <Container>
       <Row>
-        <h2><a href="">Playlist</a></h2>
-        {playlist.map((playlistItem, index) => (
-          <Col key={playlistItem.id} md={4} lg={3} sm={6} xs={12}>
+      <h2>Playlist</h2>
+      {playlist.map((playlistItem, index) => (
+          <Col key={index} md={4} lg={3} sm={6} xs={12}>
+
             <Card style={{ margin: '10px' }}>
             <a href={`/playListDetail/${playlistItem.id}`}>
             <Card.Img

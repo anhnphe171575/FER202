@@ -105,28 +105,20 @@
   "playlist": [
     {
       "id": "6953",
-      "title": "aaa",
+      "title": "playList1",
       "userid": "1",
-      "img": "/images/ngaydeptroidenoichiatay.jpg",
+      "img": "/images/5anhem.jpg",
       "description": "aaa",
       "listsongid": [
         "1"
       ]
     },
+   
     {
-      "title": "aaa1",
-      "userid": "9a78",
-      "img": "/images/1490321288901_600.jpg",
-      "description": "bbb",
-      "listsongid": [
-        "3"
-      ],
-      "id": "121c"
-    },
-    {
-      "title": "aaa11",
+      "title": "playList1",
       "userid": "9a78",
       "img": "/images/quangle1.jpg",
+
       "description": "aaa",
       "listsongid": [
         "3"
