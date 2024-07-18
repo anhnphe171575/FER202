@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Button, Container, Form, Nav, Navbar, Col, Row, Image, Carousel, NavDropdown, InputGroup, Dropdown  } from 'react-bootstrap';
-import { Link } from 'react-router-dom'; 
+import { Button, Container, Form, Nav, Navbar, Col, Row, Image, Carousel, NavDropdown, InputGroup, Dropdown } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 
 import './Header.css';
 import Carousel1 from './Carousel';
 
 export default function Headerhomepage() {
     const [user, setUser] = useState(null);
-    
+    const navigate = useNavigate();
+
     useEffect(() => {
         const storedUser = sessionStorage.getItem("user");
 
@@ -21,10 +22,18 @@ export default function Headerhomepage() {
             }
         }
     }, []);
-    const handleRemove =() =>{
-       sessionStorage.removeItem("user")
-       setUser(null);
-       window.location.reload();
+
+    const handlePremiumClick = (id) => {
+        if (!user) {
+            navigate('/Login');
+        } else {
+            navigate(`/premium/${id || ''}`);
+        }
+    };
+    const handleRemove = () => {
+        sessionStorage.removeItem("user")
+        setUser(null);
+        window.location.reload();
     }
     return (
         <Container>
@@ -41,7 +50,7 @@ export default function Headerhomepage() {
                             >
                                 <Nav.Link as={Link} to="/Home" className="me-3">Home</Nav.Link>
                                 <Nav.Link as={Link} to="/BXH" className="me-3">BXH</Nav.Link>
-                                <Nav.Link href="playList" className="me-3">PlayList</Nav.Link>
+                                <Nav.Link as={Link} to={"/playList"} className="me-3">PlayList</Nav.Link>
                                 <Nav.Link as={Link} to="/Album" className="me-3">Album</Nav.Link>
                                 {user && user.RoleId === "1" && (
                                     <>
@@ -65,34 +74,42 @@ export default function Headerhomepage() {
                                 </InputGroup>
 
                             </Form>
-                            {user ? (
-                                <Dropdown>
-                                <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                {user.fullName}
-                                </Dropdown.Toggle>                         
-                                <Dropdown.Menu>
-                                 
-                                  <Dropdown.Item as={Link} to={`/userprofile/${user.id}`}>Trang Cá Nhân</Dropdown.Item>
-                                  <Dropdown.Item onClick={handleRemove}>Đăng Xuất</Dropdown.Item>
-                                </Dropdown.Menu>
-                              </Dropdown>
-                                
-                            ) : (
-                                <div>
-                                    <Link to="/Login">
-                                        <Button variant="outline-success" className="me-2">Đăng nhập</Button>
-                                    </Link>
-                                    <Link to="/Register">
-                                        <Button variant="success">Đăng ký</Button>
-                                    </Link>
-                                </div>
-                            )}
-
+                            <div style={{ display: "flex" }}>
+                                {user ? (
+                                    <>
+                                        {user.Premium === "Yes" ? (
+                                            <span className="me-2 text-success">Tài khoản Premium</span>
+                                        ) : (
+                                            <Button className="btn btn-success me-2" onClick={() => handlePremiumClick(user.id)}>
+                                                Nâng Cấp Tài Khoản
+                                            </Button>
+                                        )}
+                                        <Dropdown>
+                                            <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                                {user.fullName}
+                                            </Dropdown.Toggle>
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item as={Link} to={`/userprofile/${user.id}`}>Trang Cá Nhân</Dropdown.Item>
+                                                <Dropdown.Item onClick={handleRemove}>Đăng Xuất</Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
+                                    </>
+                                ) : (
+                                    <div style={{ display: "flex" }}>
+                                        <Link to="/Login">
+                                            <Button variant="outline-success" className="me-2">Đăng nhập</Button>
+                                        </Link>
+                                        <Link to="/Register">
+                                            <Button variant="success">Đăng ký</Button>
+                                        </Link>
+                                    </div>
+                                )}
+                            </div>
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
             </Row>
-            
+
         </Container>
     );
 }

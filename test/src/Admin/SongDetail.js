@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Container, Row, Col, Image } from 'react-bootstrap';
+import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 
 const SongDetailad = () => {
   const { id } = useParams();
   const [song, setSong] = useState(null);
   const [artist, setArtist] = useState([]);
   const [categories, setCategories] = useState([]);
+  const audioRef = useRef(null);
 
   useEffect(() => {
     // Fetch the song details
@@ -35,15 +36,36 @@ const SongDetailad = () => {
   const artistName = artist.find(a => a.id === song.artistID)?.name || "Unknown Artist";
   const categoryName = categories.find(c => c.id === song.categoryId)?.name || "Unknown Category";
 
+  const handlePlayPause = () => {
+    if (audioRef.current.paused) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
+    }
+  };
+
+  const handleToggleAccept = () => {
+    const newAcceptStatus = song.accept === 'yes' ? 'no' : 'yes';
+    fetch(`http://localhost:9999/listsongs/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ...song, accept: newAcceptStatus })
+    })
+      .then(response => response.json())
+      .then(updatedSong => setSong(updatedSong))
+      .catch(error => console.error('Error updating song accept status:', error));
+  };
+
   return (
     <Container>
       <Row>
-        <Col md={6}>
-          <Image src={song.imgSrc} alt={song.title}       style={{ width: '600px' }}
- fluid />
+        <Col>
+          <Image src={song.imgSrc} alt={song.title} thumbnail />
         </Col>
-        <Col md={6}>
-          <h1>{song.title}</h1>
+        <Col>
+          <h2>{song.title}</h2>
           <p><strong>Artist:</strong> {artistName}</p>
           <p><strong>Category:</strong> {categoryName}</p>
           <p><strong>Plays:</strong> {song.plays}</p>
@@ -53,10 +75,12 @@ const SongDetailad = () => {
             <source src={song.src} type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
-          <div>
-            <Link to="/admin" className="btn btn-primary mt-3">Back to Manage</Link>
-          </div>
-
+          <Button onClick={handleToggleAccept}>
+            {song.accept === 'yes' ? 'Mark as Unaccepted' : 'Mark as Accepted'}
+          </Button>
+          <Link to="/admin">
+            <Button>Back to Manage</Button>
+          </Link>
         </Col>
       </Row>
     </Container>

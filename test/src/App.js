@@ -19,10 +19,13 @@ import Admin from './Admin/Admin';
 import ManageAlbums from './Admin/ManageAlbum';
 import ManageArtists from './Admin/ManageArtist';
 import PlaylistComponent from './Playlist/Playlist';
-import PlaylistDetail from './Playlist/PlaylistDetail';
 import SongDetailad from './Admin/SongDetail';
 import Checkout from './checkout';
 import PremiumSubscription from './Premium';
+import LoginArtist from './Login/LoginArtist';
+import ManageTableArtist from './Artist/ManagerSong';
+import AddSongArtist from './Artist/AddSong';
+import PlaylistDetail from './Playlist/PlaylistDetail';
 
 const initialOptions = {
   "client-id": "AXopNHfJ6E_snH6NGvirbRzvu8p52V3wkHYhPlm8w0b4NWZBMZ8lFNfEa0NqOx75LEeAa9uqYEGTL0uV",
@@ -58,7 +61,11 @@ function App() {
           <Route path='/playListDetail/:pid' element={<PlaylistDetail />} />
           <Route path="/listsongs/:id" element={<SongDetailad />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path='/premium' element={<PremiumSubscription />} />
+          <Route path='/premium/:uID' element={<PremiumSubscription />} />
+          <Route path='/logina' element={<LoginArtist />} />
+          <Route path='/ManageTableArtist' element={<ManageTableArtist />} />
+          <Route path='/addSongA' element={<AddSongArtist />} />
+
         </Routes>
         <MusicPlayer />
       </BrowserRouter>

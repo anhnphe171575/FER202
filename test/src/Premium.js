@@ -1,64 +1,96 @@
-import React, { useState, useContext,useEffect } from 'react';
+import React, { useState ,useEffect } from 'react';
 import { PayPalButtons } from "@paypal/react-paypal-js";
+import { useParams, Link } from "react-router-dom";
+
 import './PremiumSubscription.css';
 
 function PremiumSubscription() {
   const [plan, setPlan] = useState('monthly');
-  const [user, setUser] = useState(null);
-    
-  useEffect(() => {
-      const storedUser = sessionStorage.getItem("user");
+  const [user, setUser] = useState();
+  const {uID} = useParams();
+  // useEffect(() => {
+  //     const storedUser = sessionStorage.getItem("user");
 
-      if (storedUser) {
-          try {
-              const parsedUser = JSON.parse(storedUser); // Parse if it's a JSON string
-              setUser(parsedUser); // Set user state
-          } catch (error) {
-              console.error('Error parsing stored user:', error);
-              // Handle parsing error if necessary
-          }
-      }
-  }, []);  
+  //     if (storedUser) {
+  //         try {
+  //             const parsedUser = JSON.parse(storedUser); // Parse if it's a JSON string
+  //             setUser(parsedUser); // Set user state
+  //             console.log(user.id)
+  //         } catch (error) {
+  //             console.error('Error parsing stored user:', error);
+  //             // Handle parsing error if necessary
+  //         }
+  //     }
+  // }, []);  
   const plans = {
     monthly: { price: 9.99, name: "Monthly Plan" },
     yearly: { price: 99.99, name: "Yearly Plan" }
   };
-    
-  const handleSubscribe = async (details) => {
-    alert("Subscription completed", details);
-
+  const updateUserPremiumStatus = async (userId) => {
     try {
-      // Tạo đối tượng giao dịch
-      const transaction = {
-        userId: user.id, // ID của người dùng hiện tại
-        transactionType: "subscription",
-        amount: plans[plan].price,
-        description: `Premium ${plans[plan].name} Subscription`,
-        transactionDate: new Date().toISOString()
-      };
-      console.log(transaction);
-
-      // Gửi request POST đến API của bạn để lưu giao dịch
-      const response = await fetch('http://localhost:9999/transaction_history', {
-        method: 'POST',
+      const response = await fetch(`http://localhost:9999/users/${userId}`, {
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(transaction),
+        body: JSON.stringify({ Premium: "Yes" }),
       });
-
+  
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error('Failed to update user premium status');
       }
-
-      const result = await response.json();
-      console.log("Transaction saved", result);
-
-      // Ở đây bạn có thể thêm logic để cập nhật trạng thái Premium của người dùng
+  
+      const updatedUser = await response.json();
+      console.log("User premium status updated", updatedUser);
+      return updatedUser;
     } catch (error) {
-      console.error("Error saving transaction", error);
+      console.error("Error updating user premium status", error);
+      throw error;
     }
   };
+
+ const handleSubscribe = async (details) => {
+  try {
+    // Create transaction object (as you have it)
+    const transaction = {
+      userId: uID,
+      transactionType: "subscription",
+      amount: plans[plan].price,
+      description: `Premium ${plans[plan].name} Subscription`,
+      transactionDate: new Date().toISOString()
+    };
+
+    // Save transaction
+    const transactionResponse = await fetch('http://localhost:9999/transaction_history', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(transaction),
+    });
+
+    if (!transactionResponse.ok) {
+      throw new Error('Failed to save transaction');
+    }
+
+    const savedTransaction = await transactionResponse.json();
+    console.log("Transaction saved", savedTransaction);
+
+    // Update user's premium status
+    const updatedUser = await updateUserPremiumStatus(uID);
+    console.log("User updated with premium status", updatedUser);
+
+    // Update local user state if needed
+    setUser(updatedUser);
+
+    // Show success message to user
+    alert("Subscription completed successfully! You now have premium access.");
+
+  } catch (error) {
+    console.error("Error in subscription process", error);
+    alert("There was an error processing your subscription. Please try again.");
+  }
+};
 
   return (
     <div className="premium-subscription">
@@ -72,12 +104,13 @@ function PremiumSubscription() {
         </button>
       </div>
       <div className="subscription-benefits">
-        <h2>Premium Benefits:</h2>
+        <h2>Đặc quyền đặc biệt:</h2>
         <ul>
-          <li>Ad-free listening</li>
-          <li>Offline mode</li>
-          <li>Higher quality audio</li>
-          <li>Unlimited skips</li>
+          <li>Nghe nhạc không quảng cáo</li>
+          <li>Kho nhạc Premium</li>
+          <li>Nghe và tải nhạc Lossless</li>
+          <li>Tính năng nghe nhạc nâng cao
+          </li>
         </ul>
       </div>
       <PayPalButtons
