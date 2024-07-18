@@ -1,34 +1,34 @@
-import React, { useState, useEffect, useRef, useContext  } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import './SongDetails.css';
 import Headerhomepage from '../HomePage/Header';
-import { Link } from 'react-router-dom';
-
-
-
 import { useSongId } from '../hooks/useSongId';
 
-
 export default function SongDetail() {
-
-    const [song, setSong] = useState([]);
+    const [song, setSong] = useState({});
     const [, setSongId] = useSongId();
     const { sID } = useParams();
     const [albums, setAlbums] = useState([]);
     const [songsBXH1, setSongsBXH1] = useState([]);
     const [artists, setArtists] = useState([]);
+    const [isLiked, setIsLiked] = useState(false);
+    const [likeId, setLikeId] = useState(null);
+
+    // Giả sử userId là 1, trong thực tế bạn sẽ lấy nó từ hệ thống xác thực
+    const userId = 1;
+
     useEffect(() => {
         fetch(`http://localhost:9999/artist`)
             .then(res => res.json())
             .then(data => setArtists(data))
             .catch(e => console.log(e));
     }, []);
-    console.log(sID);
 
-    useEffect(()=> {
+    useEffect(() => {
         setSongId(sID);
-    }, [sID])
+    }, [sID, setSongId]);
+
     useEffect(() => {
         fetch(`http://localhost:9999/albums`)
             .then(res => res.json())
@@ -41,12 +41,23 @@ export default function SongDetail() {
             .then(res => res.json())
             .then(data => {
                 setSong(data);
-                console.log("a");
             })
             .catch(e => console.log(e));
-    }, [sID]);
-     
-   
+
+        // Kiểm tra xem bài hát đã được like chưa
+        fetch(`http://localhost:9999/like?userid=${userId}&trackid=${sID}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.length > 0) {
+                    setIsLiked(true);
+                    setLikeId(data[0].id);
+                } else {
+                    setIsLiked(false);
+                    setLikeId(null);
+                }
+            })
+            .catch(e => console.log(e));
+    }, [sID, userId]);
 
     useEffect(() => {
         fetch(`http://localhost:9999/listsongs`)
@@ -57,9 +68,54 @@ export default function SongDetail() {
             })
             .catch(error => console.error('Error fetching and filtering songs:', error));
     }, []);
+
     const getArtistName = (artistID) => {
         const artist = artists.find(a => a.id === artistID);
         return artist ? artist.name : 'Unknown Artist';
+    };
+
+    const handleLike = async () => {
+        if (isLiked) {
+            // Unlike the song
+            try {
+                const response = await fetch(`http://localhost:9999/like/${likeId}`, {
+                    method: 'DELETE'
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to unlike the song');
+                }
+
+                setIsLiked(false);
+                setLikeId(null);
+            } catch (error) {
+                console.error('Error unliking the song:', error);
+            }
+        } else {
+            // Like the song
+            try {
+                const response = await fetch('http://localhost:9999/like', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        userid: userId,
+                        trackid: parseInt(sID)
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to like the song');
+                }
+
+                const newLike = await response.json();
+                setIsLiked(true);
+                setLikeId(newLike.id);
+            } catch (error) {
+                console.error('Error liking the song:', error);
+            }
+        }
     };
     return (
         <Container>
@@ -92,7 +148,11 @@ export default function SongDetail() {
                         <Col xs={6}>
                         </Col>
                         <Col>
-                            <i className="bi bi-heart" style={{ padding: "5px" }}></i> Thêm Vào
+                            <i
+                                className={`bi ${isLiked ? 'bi-heart-fill' : 'bi-heart'}`}
+                                style={{ padding: "5px", cursor: "pointer", color: isLiked ? 'red' : 'inherit' }}
+                                onClick={handleLike}
+                            ></i>
                             <i className="bi bi-download" style={{ padding: "5px" }}></i> Tải Nhạc
                             <i className="bi bi-share" style={{ padding: "5px" }}></i> Chia Sẻ
                             <i className="bi bi-phone-vibrate" style={{ padding: "5px" }}></i> Nhạc Chờ

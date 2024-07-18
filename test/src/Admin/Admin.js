@@ -10,5 +10,5 @@ export default function Admin() {
             <ManageArtists/>
         </Row>
         </Container>
-ư            </div>
+           </div>
     );}

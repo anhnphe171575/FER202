@@ -113,12 +113,10 @@
         "1"
       ]
     },
-   
     {
       "title": "playList1",
       "userid": "9a78",
       "img": "/images/quangle1.jpg",
-
       "description": "aaa",
       "listsongid": [
         "3"
@@ -135,9 +133,25 @@
         "2",
         "5"
       ]
+    },
+    {
+      "id": "70d8",
+      "title": "PLAYLIST4",
+      "userid": "9a78",
+      "img": "",
+      "description": "KKK",
+      "trackid": [
+        "1",
+        "2"
+      ]
     }
   ],
-  "like": [],
+  "like": [{
+    "likeid":1,
+     "userid":1,
+     "trackid":1
+  }],
+  "transaction_history": [],
   "users": [
     {
       "id": "1",
@@ -192,7 +206,7 @@
       "src": "/music/CamGiacLucAySeRaSao-LouHoang-13538255.mp3",
       "lyrics": "Nếu có lúc đôi ta phải nhìn lại\nNếu có lúc yêu đương này nhạt phai\nSẽ thế nào nếu chia tay\nKhông muốn phải nuối tiếc\nSẽ có lúc không ai hiểu được mình\nSẽ đến lúc không biết phải làm sao\nNếu chia tay sẽ thế nào\nBây giờ gặp mặt nhau biết nói câu gì\n\nCảm giác lúc ấy sẽ ra sao?\nTự hỏi rằng sẽ khó thế nào?\nTạm biệt người yêu trong hồi ức\nTạm biệt tình yêu nơi tiềm thức\nĐã bao nhiêu lần nếm cay đắng khi yêu\nCảm giác lúc ấy sẽ ra sao?\nCô đơn lên ngôi suốt bao đêm dài\nTạm biệt người yêu thương nhiều nhất\nTạm biệt người mang bao phiền phức\nĐến con tim này\nHay là ta mới yêu chưa kịp đậm sâu\n\nNếu có lúc đôi ta phải nhìn lại\nNếu có lúc yêu đương này nhạt phai\nSẽ thế nào nếu chia tay\nKhông muốn phải lặng im\nSẽ có lúc không ai hiểu được mình\nSẽ đến lúc không biết phải làm sao\nNếu chia tay sẽ thế nào\nBây giờ gặp mặt nhau biết nói câu gì\n\nCảm giác lúc ấy sẽ ra sao?\nTự hỏi rằng sẽ khó thế nào?\nTạm biệt người yêu trong hồi ức\nTạm biệt tình yêu nơi tiềm thức\nĐã bao nhiêu lần nếm cay đắng khi yêu\nCảm giác lúc ấy sẽ ra sao?\nCô đơn lên ngôi suốt bao đêm dài\nTạm biệt người yêu thương nhiều nhất\nTạm biệt người mang bao phiền phức\nĐến con tim này\nHay là ta mới yêu chưa kịp đậm sâu\n\nCảm giác lúc ấy sẽ ra sao?\nTự hỏi rằng sẽ khó thế nào?\nTạm biệt người yêu trong hồi ức\nTạm biệt tình yêu nơi tiềm thức\nĐã bao nhiêu lần nếm cay đắng khi yêu\nCảm giác lúc ấy sẽ ra sao?\nTự hỏi rằng sẽ khó thế nào?\nTạm biệt người yêu trong hồi ức\nTạm biệt tình yêu nơi tiềm thức\nĐã bao nhiêu lần\nNếm cay đắng khi yêu\nCảm giác lúc ấy sẽ ra sao?\nCô đơn theo suốt bao đêm dài\nTạm biệt người yêu thương nhiều nhất\nTạm biệt người mang bao phiền phức\nĐến con tim này\nHay là ta mới yêu chưa kịp đậm sâu",
       "artistID": "2",
-      "plays": 98765,
+      "plays": 98770,
       "categoryId": 1,
       "ranking": 2,
       "AlbumID": 1
@@ -216,7 +230,7 @@
       "src": "/music/Camtucau.mp3",
       "artistID": "4",
       "lyrics": "Thầm thương trộm nhớ em vẫn ngẩn ngơ đợi chờ\nDẫu biết chân tình chưa đủ lớn còn dang dở\nNgậm đắng nuốt cay em sợ mình chẳng thể nắm tay\nPhải vùng vẫy nghĩ cách đứng dậy sao khó vậy\n\nEm dành cả tương lai nhưng anh phải lòng yêu ai\nSao gặp em anh phải tỏ ra ngần ngại\nEm lùi lại một bước ngẩn ngơ nhìn người thân thương\nHợp thành đôi uyên ương sánh bước trên đường\n\nChẳng buồn tương tư làm chi nên em chọn cách ngoảnh đầu bước đi\nDành cả thanh xuân gửi trao mà anh nỡ ngó lơ là sao\nDừng lại em cũng đau lắm nhưng em không muốn mình phải vấn vương\nVà em cũng biết định hướng người anh thương em thôi nhân nhượng\n\nKỷ niệm em đâu nỡ xóa em sẽ gom góp gửi vào nắng mai\nĐể được thăng hoa mãi mãi tô điểm nhấn không chút mờ phai\nDù sao cũng xin cảm ơn đã khiến cuộc sống em rạng rỡ hơn\nBộn bề em xin nhận lấy nhường cho anh hạnh phúc đong đầy",
-      "categoryId": 2,
+      "categor    yId": 2,
       "plays": 12345,
       "ranking": 5,
       "AlbumID": 5

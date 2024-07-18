@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './MusicPlayer.css';
 import { useSongId } from './hooks/useSongId';
-import { Row, Col } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import { FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 
 const MusicPlayer = () => {
@@ -9,20 +9,50 @@ const MusicPlayer = () => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
-    const [volume, setVolume] = useState(1); 
+    const [volume, setVolume] = useState(1);
     const [isMuted, setIsMuted] = useState(false);
     const progressBarRef = useRef(null);
     const audioRef = useRef(new Audio());
     const [song, setSong] = useState({});
+    const [plays, setPlays] = useState(0);
+    const [viewIncremented, setViewIncremented] = useState(false);
 
     useEffect(() => {
         if (songId) {
             fetch(`http://localhost:9999/listsongs/${songId}`)
                 .then(res => res.json())
-                .then(data => setSong(data))
+                .then(data => {
+                    setSong(data);
+                    setPlays(data.plays || 0);
+                    setViewIncremented(false); // Reset khi bài hát thay đổi
+                })
                 .catch(e => console.log(e));
         }
     }, [songId]);
+
+    const incrementPlays = async () => {
+        if (viewIncremented) return; // Không tăng nếu đã tăng rồi
+
+        const newPlays = plays + 1;
+        setPlays(newPlays);
+
+        try {
+            const response = await fetch(`http://localhost:9999/listsongs/${songId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ plays: newPlays }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to update play count');
+            }
+        } catch (error) {
+            console.error('Error updating play count:', error);
+            // Có thể thêm xử lý lỗi ở đây, ví dụ: hiển thị thông báo cho người dùng
+        }
+    };
 
     useEffect(() => {
         const audio = audioRef.current;
@@ -43,6 +73,12 @@ const MusicPlayer = () => {
     const updateProgress = () => {
         const audio = audioRef.current;
         setCurrentTime(audio.currentTime);
+
+        // Kiểm tra nếu đã phát qua nửa bài và chưa tăng lượt xem
+        if (audio.currentTime > audio.duration / 2 && !viewIncremented) {
+            incrementPlays();
+            setViewIncremented(true);
+        }
     };
 
     const togglePlayPause = () => {
@@ -127,8 +163,9 @@ const MusicPlayer = () => {
                 </div>
             </Row>
             <Row className="quality" style={{justifyContent:"flex-end"}}>128kbps</Row>
+            <Row className="play-count" style={{justifyContent:"flex-start"}}>Plays: {plays}</Row>
         </div>
     ) : null;
 };
 
-export default MusicPlayer;
+export default MusicPlayer; 
