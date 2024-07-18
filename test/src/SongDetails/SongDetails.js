@@ -1,5 +1,5 @@
     import React, { useState, useEffect, useCallback } from 'react';
-    import { Container, Row, Col, Card } from 'react-bootstrap';
+    import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
     import { useParams, Link } from "react-router-dom";
     import './SongDetails.css';
     import Headerhomepage from '../HomePage/Header';
@@ -15,11 +15,19 @@
         const [isLiked, setIsLiked] = useState(false);
         const [likeId, setLikeId] = useState(null);
         const [user, setUser] = useState(null);
+        const [feedback, setFeedback] = useState([]);
+        const [newFeedback, setNewFeedback] = useState('');
+        const [userId, setUserId] = useState(0); 
 
         useEffect(() => {
             handleSessionStorage();
         }, []);
-
+        useEffect(() => {
+            fetch(`http://localhost:9999/feedback?songId=${sID}`)
+                .then(res => res.json())
+                .then(data => setFeedback(data))
+                .catch(e => console.log(e));
+        }, [sID]);
         const handleSessionStorage = () => {
             const storedUser = sessionStorage.getItem("user");
 
@@ -27,32 +35,61 @@
                 try {
                     const parsedUser = JSON.parse(storedUser); // Parse if it's a JSON string
                     setUser(parsedUser); // Set user state
+                    setUserId(parsedUser.id);
                 } catch (error) {
                     console.error('Error parsing stored user:', error);
                     // Handle parsing error if necessary
                 }
             }
         };
-
+        const handleFeedbackSubmit = async (e) => {
+            e.preventDefault();
+            if (!newFeedback.trim()) return;
+    
+            try {
+                const response = await fetch('http://localhost:9999/feedback', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        songId: sID,
+                        userId: userId, // Ensure userId is passed correctly
+                        comment: newFeedback,
+                    }),
+                });
+    
+                if (!response.ok) {
+                    throw new Error('Failed to submit feedback');
+                }
+    
+                const feedbackData = await response.json();
+                setFeedback(prevFeedback => [...prevFeedback, feedbackData]);
+                setNewFeedback('');
+            } catch (error) {
+                console.error('Error submitting feedback:', error);
+            }
+        };
         const fetchData = useCallback(async () => {
             try {
-                const [artistsRes, albumsRes, songRes, likesRes, allSongsRes] = await Promise.all([
+                const [artistsRes, albumsRes, songRes, allSongsRes, likesRes] = await Promise.all([
                     fetch(`http://localhost:9999/artist`),
                     fetch(`http://localhost:9999/albums`),
                     fetch(`http://localhost:9999/listsongs/${sID}`),
-                    fetch(`http://localhost:9999/like?userid=${user.id}`),
-                    fetch(`http://localhost:9999/listsongs`)
+                    fetch(`http://localhost:9999/listsongs`),
+                    user ? fetch(`http://localhost:9999/like?userid=${user.id}`) : Promise.resolve({ json: () => [] })
                 ]);
-
+                
                 const artistsData = await artistsRes.json();
                 const albumsData = await albumsRes.json();
                 const songData = await songRes.json();
-                const likesData = await likesRes.json();
                 const allSongsData = await allSongsRes.json();
+                const likesData = await likesRes.json();
 
                 setArtists(artistsData);
                 setAlbums(albumsData);
                 setSong(songData);
+                console.log(song);
                 const acceptedSongs = allSongsData.filter(song => song.accept === 'yes');
                 const topSongs = acceptedSongs.sort((a, b) => b.plays - a.plays).slice(0, 10);
                 setSongsBXH1(topSongs);
@@ -149,6 +186,35 @@
                             <p>[Verse:]</p>
                             <pre>{song.lyrics}</pre>
                         </Row>
+                        
+                    <Row>
+                        <h3>Ý kiến của người nghe</h3>
+                        <ul>
+                            {feedback.map((fb, index) => {
+                                
+                                return (
+                                    <li key={index}>
+                                    <strong>{fb.userId === user?.id ? user.fullName : 'Unknown User'}:</strong> {fb.comment}
+                                </li>
+                                );
+                            })}
+                        </ul>
+                        <Form onSubmit={handleFeedbackSubmit}>
+                            <Form.Group controlId="feedbackForm">
+                                <Form.Label>Gửi ý kiến của bạn:</Form.Label>
+                                <Form.Control
+                                    as="textarea"
+                                    rows={3}
+                                    value={newFeedback}
+                                    onChange={(e) => setNewFeedback(e.target.value)}
+                                />
+                            </Form.Group>
+                            <Button variant="primary" type="submit" style={{ marginTop: '20px' }}>
+                                Gửi
+                            </Button>
+                        </Form>
+
+                    </Row>
                         <Row style={{ lineHeight: "50px", marginTop: "20px" }}>
                             <Col md={3}><h1>Album</h1></Col>
                         </Row>

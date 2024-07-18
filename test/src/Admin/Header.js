@@ -39,7 +39,7 @@ export default function HeaderAdmin() {
                                 style={{ maxHeight: '100px' }}
                                 navbarScroll
                             >
-                               
+                                 <Nav.Link as={Link} to="/ManageFeedback" className="me-3">ManageFeedback</Nav.Link>
                                 <Nav.Link as={Link} to="/ManageAlbum" className="me-3">ManageAlbums</Nav.Link>
                                 <Nav.Link as={Link} to="/Admin" className="me-3">ManageSongs</Nav.Link>
                                 <Nav.Link as={Link} to="/ManageArtist" className="me-3">ManageArtists</Nav.Link>

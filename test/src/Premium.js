@@ -6,22 +6,8 @@ import './PremiumSubscription.css';
 
 function PremiumSubscription() {
   const [plan, setPlan] = useState('monthly');
-  const [user, setUser] = useState();
   const {uID} = useParams();
-  // useEffect(() => {
-  //     const storedUser = sessionStorage.getItem("user");
-
-  //     if (storedUser) {
-  //         try {
-  //             const parsedUser = JSON.parse(storedUser); // Parse if it's a JSON string
-  //             setUser(parsedUser); // Set user state
-  //             console.log(user.id)
-  //         } catch (error) {
-  //             console.error('Error parsing stored user:', error);
-  //             // Handle parsing error if necessary
-  //         }
-  //     }
-  // }, []);  
+  const[user, setUser] = useState();
   const plans = {
     monthly: { price: 9.99, name: "Monthly Plan" },
     yearly: { price: 99.99, name: "Yearly Plan" }
@@ -39,8 +25,10 @@ function PremiumSubscription() {
       if (!response.ok) {
         throw new Error('Failed to update user premium status');
       }
-  
+      
       const updatedUser = await response.json();
+      sessionStorage.setItem('user', JSON.stringify(updatedUser));
+
       console.log("User premium status updated", updatedUser);
       return updatedUser;
     } catch (error) {
@@ -85,7 +73,7 @@ function PremiumSubscription() {
 
     // Show success message to user
     alert("Subscription completed successfully! You now have premium access.");
-
+    window.location.href= "/Home";
   } catch (error) {
     console.error("Error in subscription process", error);
     alert("There was an error processing your subscription. Please try again.");

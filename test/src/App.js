@@ -26,6 +26,8 @@ import LoginArtist from './Login/LoginArtist';
 import ManageTableArtist from './Artist/ManagerSong';
 import AddSongArtist from './Artist/AddSong';
 import PlaylistDetail from './Playlist/PlaylistDetail';
+import Search from './HomePage/Search';
+import ManageFB from './Admin/ManageFeedBack';
 
 const initialOptions = {
   "client-id": "AXopNHfJ6E_snH6NGvirbRzvu8p52V3wkHYhPlm8w0b4NWZBMZ8lFNfEa0NqOx75LEeAa9uqYEGTL0uV",
@@ -65,7 +67,8 @@ function App() {
           <Route path='/logina' element={<LoginArtist />} />
           <Route path='/ManageTableArtist' element={<ManageTableArtist />} />
           <Route path='/addSongA' element={<AddSongArtist />} />
-
+          <Route path='/Search/:search' element={<Search />} />
+          <Route path='/ManageFeedback' element={<ManageFB />} />
         </Routes>
         <MusicPlayer />
       </BrowserRouter>

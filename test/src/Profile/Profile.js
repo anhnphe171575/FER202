@@ -137,7 +137,7 @@ export default function Profile() {
                 <Card>
                   <Card.Img variant="top" src={pl.img} style={{ width: "100%" }} />
                   <Card.Body>
-                    <Card.Title>{pl.title}</Card.Title>
+                   <Link to={`/playListDetail/${pl.id}`}><Card.Title>{pl.title}</Card.Title></Link> 
                     <Button variant="warning" onClick={() => handleEditPlaylist(pl.id)} style={{ marginRight: "10px" }}>Chỉnh sửa</Button>
                     <Button variant="danger" onClick={() => handleDeletePlaylist(pl.id)}>Xóa</Button>
                   </Card.Body>

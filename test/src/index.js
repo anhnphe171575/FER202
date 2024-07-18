@@ -35,45 +35,6 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
 
-const playlist = [
-  {
-    name: 'playlist1',
-    img:'./images/image3.jpg',
-    songs: [
-      { title: 'Tevoven', imgSrc: './images/image5.jpg' },
-      { title: 'Duyen Phan', imgSrc: './images/image2.jpg' },
-      { title: 'Binh Gold', imgSrc: './images/image3.jpg' },
-      { title: 'Sai Gon dau long qua', imgSrc: './images/image1.jpg' },
-    ] 
-  },{
-    name: 'playlist2',
-    img:'./images/image1.jpg',
-    songs: [
-      { title: 'Tevoven', imgSrc: './images/image5.jpg' },
-      { title: 'Duyen Phan', imgSrc: './images/image2.jpg' },
-      { title: 'Binh Gold', imgSrc: './images/image3.jpg' },
-      { title: 'Sai Gon dau long qua', imgSrc: './images/image1.jpg' },
-    ],  
-  },{
-    name: 'playlist3',
-    img:'./images/image2.jpg',
-    songs: [
-      { title: 'Tevoven', imgSrc: './images/image5.jpg' },
-      { title: 'Duyen Phan', imgSrc: './images/image2.jpg' },
-      { title: 'Binh Gold', imgSrc: './images/image3.jpg' },
-      { title: 'Sai Gon dau long qua', imgSrc: './images/image1.jpg' },
-    ],  
-  },{
-    name: 'playlist4',
-    img:'./images/image2.jpg',
-    songs: [
-      { title: 'Tevoven', imgSrc: './images/image5.jpg' },
-      { title: 'Duyen Phan', imgSrc: './images/image2.jpg' },
-      { title: 'Binh Gold', imgSrc: './images/image3.jpg' },
-      { title: 'Sai Gon dau long qua', imgSrc: './images/image1.jpg' },
-    ],  
-  }];
-
 
 
 root.render(

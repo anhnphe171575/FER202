@@ -8,6 +8,7 @@ import Carousel1 from './Carousel';
 export default function Headerhomepage() {
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         const storedUser = sessionStorage.getItem("user");
@@ -35,6 +36,9 @@ export default function Headerhomepage() {
         setUser(null);
         window.location.reload();
     }
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
+    }
     return (
         <Container>
             <Row>
@@ -60,19 +64,22 @@ export default function Headerhomepage() {
                                     </>
                                 )}
                             </Nav>
-                            <Form className="d-flex me-2">
+                            <Form className="d-flex me-2" onSubmit={(e) => e.preventDefault()}>
                                 <InputGroup>
                                     <Form.Control
                                         type="search"
                                         placeholder="Search"
                                         aria-label="Search"
                                         aria-describedby="basic-addon1"
+                                        value={searchQuery}
+                                        onChange={handleSearchChange}
                                     />
-                                    <InputGroup.Text id="basic-addon1">
-                                        <i className="bi bi-search"></i>
-                                    </InputGroup.Text>
+                                    <Link to={searchQuery.trim() ? `/Search/${searchQuery}` : '/Home'}>
+                                        <InputGroup.Text id="basic-addon1" as="button">
+                                            <i className="bi bi-search"></i>
+                                        </InputGroup.Text>
+                                    </Link>
                                 </InputGroup>
-
                             </Form>
                             <div style={{ display: "flex" }}>
                                 {user ? (
@@ -80,11 +87,11 @@ export default function Headerhomepage() {
                                         {user.Premium === "Yes" ? (
                                             <span className="me-2 text-success">Tài khoản Premium</span>
                                         ) : (
-                                            <Button className="btn btn-success me-2" onClick={() => handlePremiumClick(user.id)}>
+                                            <Button className="btn btn-success custom-btn"  onClick={() => handlePremiumClick(user.id)}>
                                                 Nâng Cấp Tài Khoản
                                             </Button>
                                         )}
-                                        <Dropdown>
+                                        <Dropdown style={{marginLeft:"5px"}}>
                                             <Dropdown.Toggle variant="success" id="dropdown-basic">
                                                 {user.fullName}
                                             </Dropdown.Toggle>
