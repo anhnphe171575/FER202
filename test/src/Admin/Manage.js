@@ -60,7 +60,29 @@ const ManageTable = () => {
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
   };
+  const handleTogglePremium = async (songId, currentPremiumStatus) => {
+    try {
+      const response = await fetch(`http://localhost:9999/listsongs/${songId}`, {
+        method: "PATCH",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ premium: !currentPremiumStatus }),
+      });
 
+      if (response.ok) {
+        setSongs(songs.map(song => 
+          song.id === songId ? { ...song, premium: !currentPremiumStatus } : song
+        ));
+        alert(`Song is now ${!currentPremiumStatus ? 'premium' : 'non-premium'}`);
+      } else {
+        throw new Error('Failed to update premium status');
+      }
+    } catch (error) {
+      console.error('Error updating premium status:', error);
+      alert('Failed to update premium status');
+    }
+  };
   return (
     <Container>
       <HeaderAdmin ></HeaderAdmin>
@@ -109,7 +131,8 @@ const ManageTable = () => {
                 <th>Artist</th>
                 <th>Plays</th>
                 <th>Category</th> {/* Updated header */}
-                <th>Ranking</th>
+                <th>Premium</th>
+
                 <th>Actions</th>
               </tr>
             </thead>
@@ -126,8 +149,15 @@ const ManageTable = () => {
                   <td>{song.src}</td>
                   <td>{artist?.find(c => c.id == song.artistID)?.name}</td>
                   <td>{song.plays}</td>
-                  <td> {categories?.find(c => c.id == song.categoryId)?.name}</td> {/* Updated to show category name */}
-                  <td>{song.ranking}</td>
+                  <td>{categories?.find(c => c.id == song.categoryId)?.name}</td> {/* Updated to show category name */}
+                  <td>
+                    <Button 
+                      variant={song.premium ? "success" : "secondary"}
+                      onClick={() => handleTogglePremium(song.id, song.premium)}
+                    >
+                      {song.premium ? "Premium" : "Set Premium"}
+                    </Button>
+                  </td>
                   <td>
                     <Link to="#" onClick={() => handleDelete(song.id)} className="btn btn-danger me-3">Delete</Link>
                     <Link to={`/edit/${song.id}`} className="btn btn-warning me-3">Edit</Link>

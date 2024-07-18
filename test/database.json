@@ -119,38 +119,184 @@
       "img": "/images/quangle1.jpg",
       "description": "aaa",
       "listsongid": [
-        "3"
+        "2"
       ],
       "id": "9305"
+    }
+  ],
+
+  "feedback": [
+    {
+      "id": "1",
+      "userId": "2",
+      "songId": "1",
+      "comment": "This song is amazing!"
     },
     {
-      "id": "c5ca",
-      "title": "sd",
-      "userid": "1",
-      "img": "blob:http://localhost:3000/d256f182-27e8-44b5-93ab-e43a804b8e04",
-      "description": "aaa",
-      "listsongid": [
-        "2",
-        "5"
-      ]
+      "id": "2",
+      "userId": "3",
+      "songId": "2",
+      "comment": "Great lyrics and melody."
     },
     {
-      "id": "70d8",
-      "title": "PLAYLIST4",
-      "userid": "9a78",
-      "img": "",
-      "description": "KKK",
-      "trackid": [
-        "1",
-        "2"
-      ]
+      "id": "32ed",
+      "songId": "1",
+      "userId": 1,
+      "comment": "aaaa"
+    },
+    {
+      "id": "e8bc",
+      "songId": "1",
+      "userId": 0,
+      "comment": "aaaa"
+    },
+    {
+      "id": "be6b",
+      "songId": "1",
+      "userId": "2",
+      "comment": "aaaa"
+    },
+    {
+      "id": "e08e",
+      "songId": "1",
+      "userId": 1,
+      "comment": "Vinh Nguyen"
+    },
+    {
+      "id": "d05b",
+      "songId": "1",
+      "userId": 1,
+      "comment": "aaaaa"
+    },
+    {
+      "id": "4f0a",
+      "songId": "1",
+      "userId": 0,
+      "comment": "aaaa"
+    },
+    {
+      "id": "78c4",
+      "songId": "1",
+      "userId": 0,
+      "comment": "aaa"
+    },
+    {
+      "id": "025c",
+      "songId": "1",
+      "userId": "2",
+      "comment": "aaa"
+    },
+    {
+      "id": "c669",
+      "songId": "1",
+      "userId": "2",
+      "comment": "aaaa"
+    },
+    {
+      "id": "6bf7",
+      "songId": "1",
+      "userId": 0,
+      "comment": "aaa"
+    },
+    {
+      "id": "fdab",
+      "songId": "1",
+      "userId": "2",
+      "comment": "aaaa"
+    },
+    {
+      "id": "0034",
+      "songId": "1",
+      "userId": "2",
+      "comment": "aa"
+    },
+    {
+      "id": "83d8",
+      "songId": "1",
+      "userId": 0,
+      "comment": "aaa"
+    },
+    {
+      "id": "9e56",
+      "songId": "1",
+      "userId": 0,
+      "comment": "a123"
+    },
+    {
+      "id": "6b4c",
+      "songId": "1",
+      "userId": "1",
+      "comment": "123"
+    },
+    {
+      "id": "c63a",
+      "songId": "1",
+      "userId": "9a78",
+      "comment": "aa"
+    },
+    {
+      "id": "8f41",
+      "songId": "1",
+      "userId": 0,
+      "comment": "KK\n"
+    },
+    {
+      "id": "4511",
+      "songId": "1",
+      "userId": "9a78",
+      "comment": "aa"
     }
   ],
   "like": [
     {
-      "id": "1",
+      "id": "cc22",
+      "userid": 1,
+      "trackid": "14"
+    },
+    {
+      "id": "ec3e",
+      "userid": 1,
+      "trackid": "2"
+    },
+    {
+      "id": "ec34",
+      "userid": 1,
+      "trackid": "2"
+    },
+    {
+      "id": "bdd1",
       "userid": "9a78",
-      "trackid": 1
+      "trackid": 3
+    },
+    {
+      "id": "90da",
+      "userid": "9a78",
+      "trackid": 2
+    },
+    {
+      "id": "15d9",
+      "userid": "9a78",
+      "trackid": 2
+    },
+    {
+      "id": "dfa1",
+      "userid": "9a78",
+      "trackid": "2"
+    },
+    {
+      "id": "5108",
+      "userid": "9a78",
+      "trackid": "2"
+    },
+    {
+      "id": "f08a",
+      "userid": "9a78",
+      "trackid": "2"
+    },
+    {
+      "id": "6f61",
+      "userid": "9a78",
+      "trackid": "2"
     }
   ],
   "transaction_history": [
@@ -159,6 +305,7 @@
       "userId": "9a78",
       "transactionType": "subscription",
       "amount": 19,
+
       "description": "Premium Monthly Plan Subscription",
       "transactionDate": "2024-07-18T11:27:12.482Z"
     },
@@ -186,7 +333,7 @@
       "transactionDate": "2024-07-18T11:27:12.482Z"
     },
     {
-      "id": "5c62",
+      "id": "2e7d",
       "userId": "9a78",
       "transactionType": "subscription",
       "amount": 9.99,
@@ -306,7 +453,8 @@
       "lyrics": "Người theo hương hoa mây mù giăng lối\nLàn sương khói phôi phai đưa bước ai xa rồi\nĐơn côi mình ta vấn vương\nHồi ức, trong men say chiều mưa buồn\nNgăn giọt lệ ngừng khiến khoé mi sầu bi\nĐường xưa nơi cố nhân từ giã biệt li\nCánh hoa rụng rơi\nPhận duyên mong manh rẽ lối trong mơ ngày tương phùng\n\nTiếng khóc cuốn theo làn gió bay\nThuyền ai qua sông lỡ quên vớt ánh trăng tàn nơi này\nTrống vắng bóng ai dần hao gầy\n\n♪Lòng ta xin nguyện khắc ghi trong tim tình nồng mê say\nMặc cho tóc mây vương lên đôi môi cay\nBâng khuâng mình ta lạc trôi giữa đời\nTa lạc trôi giữa trời\n\nĐôi chân lang thang về nơi đâu?\nBao yêu thương giờ nơi đâu?\nCâu thơ tình xưa vội phai mờ\nTheo làn sương tan biến trong cõi mơ\nMưa bụi vương trên làn mi mắt\nNgày chia lìa hoa rơi buồn hiu hắt\nTiếng đàn ai thêm sầu tương tư lặng mình trong chiều hoàng hôn,\nTan vào lời ca (Hey)\n\nLối mòn đường vắng một mình ta\nNắng chiều vàng úa nhuộm ngày qua\nXin đừng quay lưng xoá\nĐừng mang câu hẹn ước kia rời xa\nYên bình nơi nào đây\nChôn vùi theo làn mây\nEh-h-h-h-h, la-la-la-la-a-a\n\nNgười theo hương hoa mây mù giăng lối\nLàn sương khói phôi phai đưa bước ai xa rồi\nĐơn côi mình ta vấn vương, hồi ức trong men say chiều mưa buồn\nNgăn giọt lệ ngừng khiến khoé mi sầu bi\nĐường xưa nơi cố nhân từ giã biệt li\nCánh hoa rụng rơi\nPhận duyên mong manh rẽ lối trong mơ ngày tương phùng\n\nTiếng khóc cuốn theo làn gió bay\nThuyền ai qua sông lỡ quên vớt ánh trăng tàn nơi này\nTrống vắng bóng ai dần hao gầy\n\n♪Lòng ta xin nguyện khắc ghi trong tim tình nồng mê say\nMặc cho tóc mây vương lên đôi môi cay\nBâng khuâng mình ta lạc trôi giữa đời\nTa lạc trôi giữa trời\n\n♪Ta lạc trôi (Lạc trôi)\nTa lạc trôi giữa đời\nLạc trôi giữa trời\nYeah, ah-h-h-h-h-h\n\n♪Ta đang lạc nơi nào (Lạc nơi nào, lạc nơi nào)\n♪Ta đang lạc nơi nào\nLối mòn đường vắng một mình ta\nTa đang lạc nơi nào\nNắng chiều vàng úa nhuộm ngày qua\nTa đang lạc nơi nào",
       "categoryId": 1,
       "AlbumID": 1,
-      "premium": true
+      "premium": true,
+      "accept": "yes"
     },
     {
       "id": "2",
@@ -318,7 +466,9 @@
       "plays": 98773,
       "categoryId": 1,
       "AlbumID": 1,
-      "premium": true
+
+      "premium": true,
+      "accept": "yes"
     },
     {
       "id": "4",
@@ -330,7 +480,9 @@
       "plays": 67890,
       "categoryId": 1,
       "AlbumID": 4,
-      "premium": true
+
+      "premium": true,
+      "accept": "yes"
     },
     {
       "id": "5",
@@ -342,7 +494,9 @@
       "categoryId": 2,
       "plays": 12346,
       "AlbumID": 5,
-      "premium": true
+
+      "premium": true,
+      "accept": "yes"
     },
     {
       "id": "6",
@@ -354,7 +508,9 @@
       "categoryId": 2,
       "plays": 67890,
       "AlbumID": 6,
-      "premium": true
+
+      "premium": true,
+      "accept": "yes"
     },
     {
       "id": "7",
@@ -366,7 +522,9 @@
       "categoryId": 2,
       "plays": 23456,
       "AlbumID": 7,
-      "premium": true
+
+      "premium": true,
+      "accept": "yes"
     },
     {
       "id": "8",
@@ -378,7 +536,9 @@
       "categoryId": 2,
       "plays": 78901,
       "AlbumID": 7,
-      "premium": true
+
+      "premium": true,
+      "accept": "yes"
     },
     {
       "id": "9",
@@ -390,7 +550,9 @@
       "lyrics": "Tau thích mi nhưng tau không hề dám nói ra\nCó lẽ ngại có lẽ dị hoặc không có lí do gì cả\nTao biết tao không bằng được người ta nên nói yêu mi chỉ là một điều gì đó rất xa mà\nYêu là một thứ quá cao khỏi tầm tay nên nói thích mi chắc cũng không có sao đâu nhỉ\nTao biết mi không cho nhưng tao thích như rứa đó\nTao thích ngồi ngắm ánh mắt của mi mỗi khi mi nhìn hay mi đang ngó\nHay mỗi lúc mi lặng thinh đi vì những điều không vui làm mi cau có\nTao biết tao không mong được như thằng Baek Hyun được Hyun Jung kêu là chồng ơi\nNhưng mỗi khi mi kêu tao là heo ơi heo sao trong tao thấy vui thế\nChữ heo kéo dài ra và chữ ơi nặng cả tạ\nVới đôi mắt to tròn như căng ra\nKhiến tao gần như gục ngã\nMi như trái đất khiến bao nhiu vệ tinh nhân tạo bay quanh chết ngất\nTao như mặt trăng đứng từ xa nhìn mi với tình cảm chân thật\nVà một thứ gì đó gần như đã đánh mất\nBa phút nó quá ngắn nếu so với một ngày\nBa từ tao thích mi nó quá khó để nói ngay\nBa năm để tao cố gắng không cơ hội sẽ vụt bay\nVà ba phút là thời gian để tao nói ra hết nỗi lòng này\nYêu hay là thích, hay chỉ là sự ấn tượng\nTao không cần phải giải thích vì trong lòng tao vấn vương\nMỗi nụ cười mỗi ánh mắt của mi làm tim tao như chấn thương\nMỗi cử chỉ mỗi hành động của mi tao xem nó rất thân thương\nVì răng tao thích mi, tao không biết nói thế nào\nTình cảm nó đến nhẹ nhàng, tao không biết phải làm sao\nLần đầu tiên trong đời tao mới biết thế nào là thích 1 người\nLà thích tất cả mọi thứ, từ ánh mắt đến nụ cười\nLà đêm nằm mơ về mi, mở mắt ra cũng chỉ thấy mi\nLà cảm giác đợi chờ không thôi, là lo lắng khi mi giận dỗi\nLà những cảm giác lần đầu có và mi là người đã mang đến nó\nNhưng tao không có gì để mi thích tao\nTao không có bờ vai rộng để mi dựa vào lúc chơi vơi\nTao không có sức khỏe tốt để cùng mi đi chơi\nTao không có nhiều tiền để mua cho mi những món quà mới\nNhưng tao có tình cảm chân thành không lúc nào nghỉ ngơi.",
       "plays": 34567,
       "AlbumID": 7,
-      "premium": true
+
+      "premium": true,
+      "accept": "yes"
     },
     {
       "id": "10",
@@ -402,7 +564,9 @@
       "lyrics": "",
       "plays": 89012,
       "AlbumID": 7,
-      "premium": true
+
+      "premium": true,
+      "accept": "yes"
     },
     {
       "id": "11",
@@ -414,7 +578,9 @@
       "lyrics": "",
       "plays": 45678,
       "AlbumID": 7,
-      "premium": true
+
+      "premium": true,
+      "accept": "yes"
     },
     {
       "id": "12",
@@ -426,7 +592,8 @@
       "categoryId": 3,
       "plays": 90123,
       "AlbumID": 7,
-      "premium": true
+      "premium": true,
+      "accept": "yes"
     },
     {
       "id": "13",
@@ -438,7 +605,9 @@
       "lyrics": "Năm anh em trên một chiếc xe tăng\nNhư năm bông hoa nở cùng một cội\nNhư năm ngón tay trên một bàn tay\nĐã xung trận cả năm người như một\n\nVào lính xe tăng anh trước anh sau\nCái nết ở ăn mỗi người một tính\nNhưng khi hát ta hoà cùng một nhịp\nMột người đau ta tất cả quên ăn\n\nNăm anh em mỗi đứa một quê\nĐã lên xe ấy là cùng một hướng\nNổ máy lên ta một dạ xung phong\nTrước quân thù lòng chỉ biết có tiến công\n\nNăm anh em ta có năm cái tên\nẤy khi lên xe không còn tên riêng nữa\nTrên tháp pháo một ngôi sao màu lửa\nNăm quả tim chung nhịp đập rộn ràng\n\nMột con đường đất đỏ như son\nMột màu rừng xanh bạt ngàn hi vọng\nMột ý chí bay qua đầu ngọn súng\nMột niềm tin quyết thắng trong trận này",
       "plays": 56790,
       "AlbumID": 7,
-      "premium": true
+
+      "premium": true,
+      "accept": "yes"
     },
     {
       "id": "14",
@@ -449,7 +618,8 @@
       "categoryId": 4,
       "lyrics": "",
       "plays": 123456,
-      "premium": true
+      "premium": true,
+      "accept": "yes"
     },
     {
       "id": "15",
@@ -460,165 +630,163 @@
       "lyrics": "",
       "categoryId": 4,
       "plays": 234567,
-      "premium": true
+      "premium": true,
+      "accept": "yes"
     }
   ],
-  
-    "artist": [
-      {
-        "id": "1",
-        "name": "Sơn Tùng M-TP",
-        "cateId": "1",
-        "Gender": "Male",
-        "dob": "1997-01-01",
-        "email": "sontungmtp@example.com",
-        "password": "password1"
-      },
-      {
-        "id": "2",
-        "name": "Lou Hoàng",
-        "cateId": "2",
-        "Gender": "Male",
-        "dob": "2006-06-10",
-        "email": "louhoang@example.com",
-        "password": "password2"
-      },
-      {
-        "id": "3",
-        "name": "LigPig",
-        "cateId": "1",
-        "Gender": "Male",
-        "dob": "1992",
-        "email": "ligpig@example.com",
-        "password": "password3"
-      },
-      {
-        "id": "4",
-        "name": "Lương Gia Huy",
-        "cateId": "1",
-        "Gender": "Female",
-        "dob": "1995",
-        "email": "luonggiahuy@example.com",
-        "password": "password4"
-      },
-      {
-        "id": "5",
-        "name": "Kiều Chi",
-        "cateId": "2",
-        "Gender": "Male",
-        "dob": "1990",
-        "email": "kieuchi@example.com",
-        "password": "password5"
-      },
-      {
-        "id": "6",
-        "name": "Vũ Khanh",
-        "cateId": "2",
-        "Gender": "Female",
-        "dob": "1988",
-        "email": "vukhanh@example.com",
-        "password": "password6"
-      },
-      {
-        "id": "7",
-        "name": "Artist 6",
-        "cateId": "2",
-        "Gender": "Male",
-        "dob": "1985",
-        "email": "artist6@example.com",
-        "password": "password7"
-      },
-      {
-        "id": "8",
-        "name": "Artist 7",
-        "cateId": "2",
-        "Gender": "Female",
-        "dob": "1991",
-        "email": "artist7@example.com",
-        "password": "password8"
-      },
-      {
-        "id": "9",
-        "name": "Artist 8",
-        "cateId": "3",
-        "Gender": "Male",
-        "dob": "1987",
-        "email": "artist8@example.com",
-        "password": "password9"
-      },
-      {
-        "id": "10",
-        "name": "Artist 9",
-        "cateId": "3",
-        "Gender": "Female",
-        "dob": "1989",
-        "email": "artist9@example.com",
-        "password": "password10"
-      },
-      {
-        "id": "11",
-        "name": "Artist 10",
-        "cateId": "3",
-        "Gender": "Male",
-        "dob": "1993",
-        "email": "artist10@example.com",
-        "password": "password11"
-      },
-      {
-        "id": "12",
-        "name": "Artist 11",
-        "cateId": "3",
-        "Gender": "Female",
-        "dob": "1996",
-        "email": "artist11@example.com",
-        "password": "password12"
-      },
-      {
-        "id": "13",
-        "name": "Artist 12",
-        "cateId": "4",
-        "Gender": "Male",
-        "dob": "1984",
-        "email": "artist12@example.com",
-        "password": "password13"
-      },
-      {
-        "id": "14",
-        "name": "Artist 13",
-        "cateId": "4",
-        "Gender": "Female",
-        "dob": "1990",
-        "email": "artist13@example.com",
-        "password": "password14"
-      },
-      {
-        "id": "15",
-        "name": "Artist 14",
-        "cateId": "4",
-        "Gender": "Male",
-        "dob": "1986",
-        "email": "artist14@example.com",
-        "password": "password15"
-      },
-      {
-        "id": "16",
-        "name": "Artist 15",
-        "cateId": "4",
-        "Gender": "Female",
-        "dob": "1990",
-        "email": "artist15@example.com",
-        "password": "password16"
-      },
-      {
-        "id": "17",
-        "name": "gssđ",
-        "cateId": "2",
-        "Gender": "Male",
-        "dob": "2024-07-11",
-        "email": "gssd@example.com",
-        "password": "password17"
-      }
-    ]
-  
-  
+  "artist": [
+    {
+      "id": "1",
+      "name": "Sơn Tùng M-TP",
+      "cateId": "1",
+      "Gender": "Male",
+      "dob": "1997-01-01",
+      "email": "sontungmtp@example.com",
+      "password": "password1"
+    },
+    {
+      "id": "2",
+      "name": "Lou Hoàng",
+      "cateId": "2",
+      "Gender": "Male",
+      "dob": "2006-06-10",
+      "email": "louhoang@example.com",
+      "password": "password2"
+    },
+    {
+      "id": "3",
+      "name": "LigPig",
+      "cateId": "1",
+      "Gender": "Male",
+      "dob": "1992",
+      "email": "ligpig@example.com",
+      "password": "password3"
+    },
+    {
+      "id": "4",
+      "name": "Lương Gia Huy",
+      "cateId": "1",
+      "Gender": "Female",
+      "dob": "1995",
+      "email": "luonggiahuy@example.com",
+      "password": "password4"
+    },
+    {
+      "id": "5",
+      "name": "Kiều Chi",
+      "cateId": "2",
+      "Gender": "Male",
+      "dob": "1990",
+      "email": "kieuchi@example.com",
+      "password": "password5"
+    },
+    {
+      "id": "6",
+      "name": "Vũ Khanh",
+      "cateId": "2",
+      "Gender": "Female",
+      "dob": "1988",
+      "email": "vukhanh@example.com",
+      "password": "password6"
+    },
+    {
+      "id": "7",
+      "name": "Artist 6",
+      "cateId": "2",
+      "Gender": "Male",
+      "dob": "1985",
+      "email": "artist6@example.com",
+      "password": "password7"
+    },
+    {
+      "id": "8",
+      "name": "Artist 7",
+      "cateId": "2",
+      "Gender": "Female",
+      "dob": "1991",
+      "email": "artist7@example.com",
+      "password": "password8"
+    },
+    {
+      "id": "9",
+      "name": "Artist 8",
+      "cateId": "3",
+      "Gender": "Male",
+      "dob": "1987",
+      "email": "artist8@example.com",
+      "password": "password9"
+    },
+    {
+      "id": "10",
+      "name": "Artist 9",
+      "cateId": "3",
+      "Gender": "Female",
+      "dob": "1989",
+      "email": "artist9@example.com",
+      "password": "password10"
+    },
+    {
+      "id": "11",
+      "name": "Artist 10",
+      "cateId": "3",
+      "Gender": "Male",
+      "dob": "1993",
+      "email": "artist10@example.com",
+      "password": "password11"
+    },
+    {
+      "id": "12",
+      "name": "Artist 11",
+      "cateId": "3",
+      "Gender": "Female",
+      "dob": "1996",
+      "email": "artist11@example.com",
+      "password": "password12"
+    },
+    {
+      "id": "13",
+      "name": "Artist 12",
+      "cateId": "4",
+      "Gender": "Male",
+      "dob": "1984",
+      "email": "artist12@example.com",
+      "password": "password13"
+    },
+    {
+      "id": "14",
+      "name": "Artist 13",
+      "cateId": "4",
+      "Gender": "Female",
+      "dob": "1990",
+      "email": "artist13@example.com",
+      "password": "password14"
+    },
+    {
+      "id": "15",
+      "name": "Artist 14",
+      "cateId": "4",
+      "Gender": "Male",
+      "dob": "1986",
+      "email": "artist14@example.com",
+      "password": "password15"
+    },
+    {
+      "id": "16",
+      "name": "Artist 15",
+      "cateId": "4",
+      "Gender": "Female",
+      "dob": "1990",
+      "email": "artist15@example.com",
+      "password": "password16"
+    },
+    {
+      "id": "17",
+      "name": "gssđ",
+      "cateId": "2",
+      "Gender": "Male",
+      "dob": "2024-07-11",
+      "email": "gssd@example.com",
+      "password": "password17"
+    }
+  ]
 }

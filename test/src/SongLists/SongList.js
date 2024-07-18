@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
 import { useParams } from "react-router-dom";
@@ -6,58 +6,89 @@ import './SongList.css';
 import Headerhomepage from '../HomePage/Header';
 import { useSongId } from '../hooks/useSongId';
 
-
 export default function SongList() {
     const [artists, setArtists] = useState([]);
-
     const [songs, setSongs] = useState([]);
     const [songplay, setSongplay] = useState(null);
-    const [, setSongId] = useSongId();
+    const [sID, setSongId] = useSongId();
     const { aID } = useParams();
     const [sid, setSongID1] = useState("");
     const [albums, setAlbums] = useState([]);
     const [songsBXH1, setSongsBXH1] = useState([]);
     const [currentPlayingId, setCurrentPlayingId] = useState(null);
-
-    console.log(aID);
- 
-    useEffect(() => {
-        fetch(`http://localhost:9999/artist`)
-            .then(res => res.json())
-            .then(data => setArtists(data))
-            .catch(e => console.log(e));
-    }, []);
-    useEffect(() => {
-        fetch(`http://localhost:9999/albums`)
-            .then(res => res.json())
-            .then(data => setAlbums(data))
-            .catch(e => console.log(e));
-    }, []);
+    const [isLiked, setIsLiked] = useState(false);
+    const [likeId, setLikeId] = useState(null);
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:9999/listsongs`)
-            .then(res => res.json())
-            .then(data => {        
-                const filteredSongs = data.filter(song => song.ranking >= 1 && song.ranking <= 10);
-                const albumSongs = data.filter(song => song.AlbumID === Number(aID));
-                setSongs(albumSongs);
-                console.log(albumSongs)
-                setSongsBXH1(filteredSongs);
-                if (albumSongs.length > 0) {
-                    setSongplay(albumSongs[0]);
-                    setSongID1(songplay.id);
-                }
-            })
-            .catch(error => console.error('Error fetching and filtering songs:', error));
-    }, [aID]);
+        handleSessionStorage();
+    }, []);
+
+    const handleSessionStorage = () => {
+        const storedUser = sessionStorage.getItem("user");
+        if (storedUser) {
+            try {
+                const parsedUser = JSON.parse(storedUser);
+                setUser(parsedUser);
+            } catch (error) {
+                console.error('Error parsing stored user:', error);
+            }
+        }
+    };
+
+    const fetchData = useCallback(async () => {
+        try {
+            const [artistsRes, albumsRes, songsRes, likesRes] = await Promise.all([
+                fetch('http://localhost:9999/artist').then(res => res.json()),
+                fetch('http://localhost:9999/albums').then(res => res.json()),
+                fetch('http://localhost:9999/listsongs').then(res => res.json()),
+                user ? fetch(`http://localhost:9999/like?userid=${user.id}&trackid=${aID}`).then(res => res.json()) : Promise.resolve([])
+            ]);
+
+            setArtists(artistsRes);
+            setAlbums(albumsRes);
+
+            const acceptedSongs = songsRes.filter(song => song.accept === 'yes');
+            const topSongs = acceptedSongs.sort((a, b) => b.plays - a.plays).slice(0, 10);
+            const albumSongs = songsRes.filter(song => song.AlbumID === Number(aID));
+            setSongs(albumSongs);
+            setSongsBXH1(topSongs);
+
+            if (albumSongs.length > 0) {
+                setSongplay(albumSongs[0]);
+                setSongID1(albumSongs[0].id);
+            }
+
+            if (likesRes.find(a => Number(a.trackid) === Number(sID))) {
+                setIsLiked(true);
+                setLikeId(likesRes[0].id);
+            } else {
+                setIsLiked(false);
+                setLikeId(null);
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }, [aID, user,sID]);
+
+    useEffect(() => {
+        fetchData();
+    }, [fetchData]);
+
+    useEffect(() => {
+        setSongId(sid);
+    }, [sid, setSongId]);
+
     const onSongClick = (id) => {
         setCurrentPlayingId(id);
         handleSongClick(id);
     };
-    const getArtistName = (artistID) => {
+
+    const getArtistName = useCallback((artistID) => {
         const artist = artists.find(a => a.id === artistID);
         return artist ? artist.name : 'Unknown Artist';
-    };
+    }, [artists]);
+
     const handleSongClick = (id) => {
         const selectedSong = songs.find(song => song.id === id);
         if (selectedSong) {
@@ -65,9 +96,32 @@ export default function SongList() {
             setSongID1(id);
         }
     };
-    useEffect(() => {
-        setSongId(sid);
-    }, [sid, setSongId]);
+
+    const handleLike = async () => {
+        if (!user) {
+            console.log("User not logged in");
+            return;
+        }
+
+        try {
+            if (isLiked) {
+                await fetch(`http://localhost:9999/like/${likeId}`, { method: 'DELETE' });
+                setIsLiked(false);
+                setLikeId(null);
+            } else {
+                const response = await fetch('http://localhost:9999/like', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userid: user.id, trackid: parseInt(songplay.id) }),
+                });
+                const newLike = await response.json();
+                setIsLiked(true);
+                setLikeId(newLike.id);
+            }
+        } catch (error) {
+            console.error(`Error ${isLiked ? 'unliking' : 'liking'} the song:`, error);
+        }
+    };
 
     return (
         <Container>
@@ -80,14 +134,11 @@ export default function SongList() {
                     {songs.map((s, index) => (
                         <Row key={s.id} style={{ border: "1px solid black", marginTop: "10px" }}>
                             <Col>
-                                <p onClick={() => onSongClick(s.id)}>{currentPlayingId === s.id && <i className="bi bi-play-fill play-icon" style={{ padding: "5px" }}></i>}{index + 1}. {s.title} - {getArtistName(s.artistID)}
+                                <p onClick={() => onSongClick(s.id)}>
+                                    {currentPlayingId === s.id && <i className="bi bi-play-fill play-icon" style={{ padding: "5px" }}></i>}
+                                    {index + 1}. {s.title} - {getArtistName(s.artistID)}
                                 </p>
                             </Col>
-                            <Col><p><i className="bi bi-heart" style={{ padding: "5px" }}></i> Thêm Vào
-                                <i className="bi bi-download" style={{ padding: "5px" }}></i> Tải Nhạc
-                                <i className="bi bi-share" style={{ padding: "5px" }}></i> Chia Sẻ
-                                <i className="bi bi-phone-vibrate" style={{ padding: "5px" }}></i> Nhạc Chờ</p></Col>
-
                         </Row>
                     ))}
                     {songplay && (
@@ -99,7 +150,7 @@ export default function SongList() {
                             </Row>
                             <Row>
                                 <Col>
-                                    <p style={{ fontSize: '1.2rem' }}><strong>Nhạc sĩ:</strong>  {getArtistName(songplay.artistID)}</p>
+                                    <p style={{ fontSize: '1.2rem' }}><strong>Nhạc sĩ:</strong> {getArtistName(songplay.artistID)}</p>
                                 </Col>
                             </Row>
                             <Row>
@@ -113,25 +164,25 @@ export default function SongList() {
                                 </Col>
                             </Row>
                             <Row className="icon-row" style={{ marginTop: "10px" }}>
-                                <Col xs={6}>
-                                </Col>
                                 <Col>
-                                    <i className="bi bi-heart" style={{ padding: "5px" }}></i> Thêm Vào
-                                    <i className="bi bi-download" style={{ padding: "5px" }}></i> Tải Nhạc
-                                    <i className="bi bi-share" style={{ padding: "5px" }}></i> Chia Sẻ
-                                    <i className="bi bi-phone-vibrate" style={{ padding: "5px" }}></i> Nhạc Chờ
+                                    <i
+                                        className={`bi ${isLiked ? 'bi-heart-fill' : 'bi-heart'}`}
+                                        style={{ padding: "5px", cursor: "pointer", color: isLiked ? 'red' : 'inherit' }}
+                                        onClick={handleLike}
+                                    /> Thêm Vào
+                                    <i className="bi bi-download" style={{ padding: "5px" }}/> Tải Nhạc
+                                    <i className="bi bi-share" style={{ padding: "5px" }}/> Chia Sẻ
+                                    <i className="bi bi-phone-vibrate" style={{ padding: "5px" }}/> Nhạc Chờ
                                 </Col>
                             </Row>
-                       
-                  
-                    <Row style={{ border: '1px solid', marginTop: "20px" }}>
-                        <h3> Lời bài hát: {songplay.title}</h3>
-                        <p>Ca sĩ :  {getArtistName(songplay.artistID)}</p>
-                        <p>[Verse:]</p>
-                        <pre>{songplay.lyrics}</pre>
-                    </Row>
-                    </>
-                      )}
+                            <Row style={{ border: '1px solid', marginTop: "20px" }}>
+                                <h3> Lời bài hát: {songplay.title}</h3>
+                                <p>Ca sĩ : {getArtistName(songplay.artistID)}</p>
+                                <p>[Verse:]</p>
+                                <pre>{songplay.lyrics}</pre>
+                            </Row>
+                        </>
+                    )}
                     <Row style={{ lineHeight: "50px", marginTop: "20px" }}>
                         <Col md={3}><h1>Album</h1></Col>
                     </Row>
@@ -140,10 +191,10 @@ export default function SongList() {
                         {albums.map((album, idx) => (
                             <Col md={3} key={idx} >
                                 <Card className="mb-4 album-card">
-                                    <Link to={`/songlist/${album.id}`}><Card.Img variant="top" src={album.cover} className="album-card-img" /></Link>
+                                    <Link to={`/songlist/${album.id}`}>
+                                        <Card.Img variant="top" src={album.cover} className="album-card-img" />
+                                    </Link>
                                     <Card.Body>
-                                <Link to={`/songlist/${album.id}`}><Card.Img variant="top" src={album.cover} className="album-card-img" /></Link>                                  
-
                                         <Card.Title className="album-card-title">{album.title}</Card.Title>
                                     </Card.Body>
                                 </Card>
@@ -164,7 +215,7 @@ export default function SongList() {
                                 <Row>
                                     <Link to={`/song/${s.id}`}>{s.title}</Link>
                                 </Row>
-                                <Row>{s.artist}</Row>
+                                <Row>{getArtistName(s.artistID)}</Row>
                             </Col>
                         </Row>
                     ))}

@@ -19,7 +19,6 @@ import Admin from './Admin/Admin';
 import ManageAlbums from './Admin/ManageAlbum';
 import ManageArtists from './Admin/ManageArtist';
 import PlaylistComponent from './Playlist/Playlist';
-import PlaylistDetail from './Playlist/PlaylistDetail';
 import SongDetailad from './Admin/SongDetail';
 import Checkout from './checkout';
 import PremiumSubscription from './Premium';
@@ -28,6 +27,12 @@ import Sidebar from './dashboard/Sidebar'
 import AdminDashboard from './dashboard/AdminDashboard'
 import ArtistDashboard from './dashboard/ArtistDashboard'
 import './index.css';
+import LoginArtist from './Login/LoginArtist';
+import ManageTableArtist from './Artist/ManagerSong';
+import AddSongArtist from './Artist/AddSong';
+import PlaylistDetail from './Playlist/PlaylistDetail';
+import Search from './HomePage/Search';
+import ManageFB from './Admin/ManageFeedBack';
 
 const initialOptions = {
   "client-id": "AXopNHfJ6E_snH6NGvirbRzvu8p52V3wkHYhPlm8w0b4NWZBMZ8lFNfEa0NqOx75LEeAa9uqYEGTL0uV",
@@ -66,6 +71,13 @@ function App() {
           <Route path='/premium' element={<PremiumSubscription />} />
           <Route path="/adminDashboard" element={<AdminDashboard />} />
           <Route path="/artistDashboard" element={<ArtistDashboard />} />
+
+          <Route path='/premium/:uID' element={<PremiumSubscription />} />
+          <Route path='/logina' element={<LoginArtist />} />
+          <Route path='/ManageTableArtist' element={<ManageTableArtist />} />
+          <Route path='/addSongA' element={<AddSongArtist />} />
+          <Route path='/Search/:search' element={<Search />} />
+          <Route path='/ManageFeedback' element={<ManageFB />} />
         </Routes>
         <MusicPlayer />
       </BrowserRouter>

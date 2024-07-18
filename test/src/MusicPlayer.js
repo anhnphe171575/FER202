@@ -4,6 +4,8 @@ import { useSongId } from './hooks/useSongId';
 import { Row } from 'react-bootstrap';
 import { FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 
+const PREMIUM_SONG_LIMIT = 44;
+
 const MusicPlayer = () => {
     const [songId] = useSongId();
     const [isPlaying, setIsPlaying] = useState(false);
@@ -16,6 +18,13 @@ const MusicPlayer = () => {
     const [song, setSong] = useState({});
     const [plays, setPlays] = useState(0);
     const [viewIncremented, setViewIncremented] = useState(false);
+    const [isPremium, setIsPremium] = useState(false);
+    const [currentUser, setCurrentUser] = useState(null);
+
+    useEffect(() => {
+        const storedUser = JSON.parse(sessionStorage.getItem("user"));
+        setCurrentUser(storedUser);
+    }, []);
 
     useEffect(() => {
         if (songId) {
@@ -23,15 +32,17 @@ const MusicPlayer = () => {
                 .then(res => res.json())
                 .then(data => {
                     setSong(data);
-                    setPlays(data.plays || 0);
-                    setViewIncremented(false); // Reset khi bài hát thay đổi
+                    setPlays(data.plays ?? 0);
+                    setViewIncremented(false);
+                    setIsPremium(data?.premium ?? false);
+                    console.log(isPremium)
                 })
-                .catch(e => console.log(e));
+                .catch(e => console.error(e));
         }
     }, [songId]);
 
     const incrementPlays = async () => {
-        if (viewIncremented) return; // Không tăng nếu đã tăng rồi
+        if (viewIncremented) return;
 
         const newPlays = plays + 1;
         setPlays(newPlays);
@@ -50,7 +61,6 @@ const MusicPlayer = () => {
             }
         } catch (error) {
             console.error('Error updating play count:', error);
-            // Có thể thêm xử lý lỗi ở đây, ví dụ: hiển thị thông báo cho người dùng
         }
     };
 
@@ -65,7 +75,7 @@ const MusicPlayer = () => {
 
             return () => {
                 audio.removeEventListener('timeupdate', updateProgress);
-                audio.removeEventListener('loadedmetadata', () => { });
+                audio.removeEventListener('loadedmetadata', () => {});
             };
         }
     }, [song]);
@@ -74,7 +84,12 @@ const MusicPlayer = () => {
         const audio = audioRef.current;
         setCurrentTime(audio.currentTime);
 
-        // Kiểm tra nếu đã phát qua nửa bài và chưa tăng lượt xem
+        if (isPremium && !currentUser?.Premium && audio.currentTime >= PREMIUM_SONG_LIMIT) {
+            audio.pause();
+            setIsPlaying(false);
+            audio.currentTime = PREMIUM_SONG_LIMIT;
+        }
+
         if (audio.currentTime > audio.duration / 2 && !viewIncremented) {
             incrementPlays();
             setViewIncremented(true);
@@ -94,7 +109,12 @@ const MusicPlayer = () => {
     const handleProgressChange = (e) => {
         const audio = audioRef.current;
         const clickPosition = (e.pageX - progressBarRef.current.offsetLeft) / progressBarRef.current.offsetWidth;
-        const newTime = clickPosition * audio.duration;
+        let newTime = clickPosition * audio.duration;
+        
+        if (isPremium && !currentUser?.Premium && newTime > PREMIUM_SONG_LIMIT) {
+            newTime = PREMIUM_SONG_LIMIT;
+        }
+        
         audio.currentTime = newTime;
         setCurrentTime(newTime);
     };
@@ -124,48 +144,53 @@ const MusicPlayer = () => {
     };
 
     return songId ? (
-        <div className="music-player">
+        <section className="music-player">
             <div className="player-content">
-                <div className="song-info">
+                <article className="song-info">
                     <img src={song.imgSrc} alt="Album cover" className="cover-art" />
                     <div className="song-details">
                         <h2 className="song-title">{song.title}</h2>
                         <p className="artist">{song.artist}</p>
                     </div>
-                </div>
-                <div className="controls" style={{ marginLeft:"20%"}}>
+                </article>
+                <div className="controls" style={{ marginLeft: "20%" }}>
                     <button className="play-pause" onClick={togglePlayPause}>
                         {isPlaying ? '⏸' : '▶'}
                     </button>
                     <span className="time">
-                        {formatTime(currentTime)} / {formatTime(duration)}
+                        {`${formatTime(currentTime)} / ${formatTime(isPremium && !currentUser?.Premium ? Math.min(duration, PREMIUM_SONG_LIMIT) : duration)}`}
                     </span>
                 </div>
             </div>
             <Row className="progress-container">
                 <div className="progress-bar" ref={progressBarRef} onClick={handleProgressChange}>
-                    <div className="progress" style={{ width: `${(currentTime / duration) * 100}%` }}></div>
+                    <div className="progress" style={{ width: `${(currentTime / (isPremium && !currentUser?.Premium ? Math.min(duration, PREMIUM_SONG_LIMIT) : duration)) * 100}%` }}></div>
                 </div>
             </Row>
             <Row className="volume-control">
-                <div style={{display:"flex", justifyContent:"flex-end"}}>
-                <button onClick={toggleMute}>
-                    {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
-                </button>
-                <input
-                    type="range"
-                    min="0"
-                    max="1"
-                    step="0.01"
-                    value={isMuted ? 0 : volume}
-                    onChange={handleVolumeChange}
-                />
+                <div style={{display: "flex", justifyContent: "flex-end"}}>
+                    <button onClick={toggleMute}>
+                        {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
+                    </button>
+                    <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value={isMuted ? 0 : volume}
+                        onChange={handleVolumeChange}
+                    />
                 </div>
             </Row>
-            <Row className="quality" style={{justifyContent:"flex-end"}}>128kbps</Row>
-            <Row className="play-count" style={{justifyContent:"flex-start"}}>Plays: {plays}</Row>
-        </div>
+            <Row className="quality" style={{justifyContent: "flex-end"}}>128kbps</Row>
+            <Row className="play-count" style={{justifyContent: "flex-start"}}>Plays: {plays}</Row>
+            {isPremium && !currentUser?.Premium && (
+                <div className="premium-message">
+                    This is a premium song. Upgrade to listen to the full track.
+                </div>
+            )}
+        </section>
     ) : null;
 };
 
-export default MusicPlayer; 
+export default MusicPlayer;
