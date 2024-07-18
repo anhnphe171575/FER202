@@ -5,6 +5,23 @@ import { Link } from 'react-router-dom';
 
 export default function HeaderAt() {
     const [user, setUser] = useState(null);
+    useEffect(() => {
+        const storedUser = sessionStorage.getItem("artist");
+
+        if (storedUser) {
+            try {
+                const parsedUser = JSON.parse(storedUser); // Parse if it's a JSON string
+                setUser(parsedUser); // Set user state
+            } catch (error) {
+                console.error('Error parsing stored user:', error);
+                // Handle parsing error if necessary
+            }
+        }
+    }, []);
+    const handleRemove = () => {
+        sessionStorage.removeItem("user")
+        window.location.href = "/Home"
+    }
     return (
         <Row>
             <Navbar expand="lg" className="bg-body-tertiary">
@@ -19,10 +36,8 @@ export default function HeaderAt() {
                             style={{ maxHeight: '100px' }}
                             navbarScroll
                         >
-                            <Nav.Link as={Link} to="/adminDashboard" className="me-3">Dashboard</Nav.Link>
-                            <Nav.Link as={Link} to="/ManageAlbum" className="me-3">ManageAlbums</Nav.Link>
-                            <Nav.Link as={Link} to="/Admin" className="me-3">ManageSongs</Nav.Link>
-                            <Nav.Link as={Link} to="/ManageArtist" className="me-3">ManageArtists</Nav.Link>
+                            <Nav.Link as={Link} to="/artistDashboard" className="me-3">Dashboard</Nav.Link>
+                            <Nav.Link as={Link} to="/ManageTableArtist" className="me-3">Manage My Songs</Nav.Link>
                         </Nav>
                         <Form className="d-flex me-2" />
 
@@ -31,11 +46,10 @@ export default function HeaderAt() {
                         {user ? (
                             <Dropdown>
                                 <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                    {user.fullName}
+                                   hi {user.name}
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item as={Link} to={`/userprofile/${user.id}`}>Trang Cá Nhân</Dropdown.Item>
-                                    <Dropdown.Item >Đăng Xuất</Dropdown.Item>
+                                <Dropdown.Item onClick={handleRemove}>Đăng Xuất</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
 

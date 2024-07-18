@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Container, Form, Nav, Navbar, Col, Row, Image, Carousel, NavDropdown, InputGroup, Dropdown, Table } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
+import HeaderAt from './HeaderArtist';
 
 const ManageTableArtist = () => {
   const [songs, setSongs] = useState([]);
@@ -75,7 +76,8 @@ const ManageTableArtist = () => {
 
   return (
     <Container>
-      <Row>
+      <HeaderAt></HeaderAt>
+      <Row style={{marginTop:'20px'}}>
         <Col md={8}>
           <h1>Manage My Songs</h1>
         </Col>
