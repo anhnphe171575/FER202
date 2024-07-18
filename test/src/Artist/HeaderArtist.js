@@ -1,30 +1,10 @@
-
 import { useState, useEffect } from 'react';
 import { Button, Container, Form, Nav, Navbar, Col, Row, Image, Carousel, NavDropdown, InputGroup, Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 
-export default function HeaderAdmin() {
+export default function HeaderAt() {
     const [user, setUser] = useState(null);
-    const [search, setSearch] = useState("");
-
-    useEffect(() => {
-        const storedUser = sessionStorage.getItem("user");
-
-        if (storedUser) {
-            try {
-                const parsedUser = JSON.parse(storedUser); // Parse if it's a JSON string
-                setUser(parsedUser); // Set user state
-            } catch (error) {
-                console.error('Error parsing stored user:', error);
-                // Handle parsing error if necessary
-            }
-        }
-    }, []);
-    const handleRemove = () => {
-        sessionStorage.removeItem("user")
-        window.location.href = "/Home"
-    }
     return (
         <Row>
             <Navbar expand="lg" className="bg-body-tertiary">
@@ -55,7 +35,7 @@ export default function HeaderAdmin() {
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
                                     <Dropdown.Item as={Link} to={`/userprofile/${user.id}`}>Trang Cá Nhân</Dropdown.Item>
-                                    <Dropdown.Item onClick={handleRemove}>Đăng Xuất</Dropdown.Item>
+                                    <Dropdown.Item >Đăng Xuất</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
 

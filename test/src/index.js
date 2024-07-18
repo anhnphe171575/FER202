@@ -76,13 +76,13 @@ const playlist = [
 
 
 
-root.render(
-  <React.StrictMode>
-    <App></App>  
-    
-    {/* <PlaylistUpdateForm>  </PlaylistUpdateForm> */}
-    {/* <ManageArtists/> */}
-    {/* <ManageAlbums/> */}
-  </React.StrictMode>
-);
+  root.render(
+    <React.StrictMode>
+      <App></App>  
+      
+      {/* <PlaylistUpdateForm>  </PlaylistUpdateForm> */}
+      {/* <ManageArtists/> */}
+      {/* <ManageAlbums/> */}
+    </React.StrictMode>
+  );
 

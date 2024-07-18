@@ -23,6 +23,11 @@ import PlaylistDetail from './Playlist/PlaylistDetail';
 import SongDetailad from './Admin/SongDetail';
 import Checkout from './checkout';
 import PremiumSubscription from './Premium';
+import Header from './dashboard/Header'
+import Sidebar from './dashboard/Sidebar'
+import AdminDashboard from './dashboard/AdminDashboard'
+import ArtistDashboard from './dashboard/ArtistDashboard'
+import './index.css';
 
 const initialOptions = {
   "client-id": "AXopNHfJ6E_snH6NGvirbRzvu8p52V3wkHYhPlm8w0b4NWZBMZ8lFNfEa0NqOx75LEeAa9uqYEGTL0uV",
@@ -59,6 +64,8 @@ function App() {
           <Route path="/listsongs/:id" element={<SongDetailad />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path='/premium' element={<PremiumSubscription />} />
+          <Route path="/adminDashboard" element={<AdminDashboard />} />
+          <Route path="/artistDashboard" element={<ArtistDashboard />} />
         </Routes>
         <MusicPlayer />
       </BrowserRouter>
